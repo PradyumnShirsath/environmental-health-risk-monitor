@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_07ea025e2634e882b621b602eb1e20fc {
+                #map_fd55ed70e28c93695eec6309e72be65e {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -50,36 +50,30 @@
             </script>
 
         
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
 </head>
 <body>
     
     
-             <div style="position: fixed; 
-                         bottom: 30px; left: 30px; width: 400px; height: 160px; 
-                         z-index:9999; font-size:12px;
-                         background-color: rgba(0,0,0,0.85); color: white;
-                         padding: 15px; border-radius: 8px; border: 1px solid #444; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
-                 <h3 style="margin-top:0; color:#ffcc00;"><b>🌍 Project Hazard: Global Command Center</b></h3>
-                 Merged Analysis: <b>Refugee Crises</b> + <b>Live Environmental Monitoring</b><br>
-                 <br>
-                 <span style="color:#ff0033; font-size:14px;">●</span> <b>Crisis Zones:</b> High Displacement & Conflict<br>
-                 <span style="color:#00ff00; font-size:14px;">●</span> <b>Global Monitors:</b> Real-time Climate Tracking<br>
-                 <br>
-                 <i>Live Data: Temp, Humidity, PM2.5, AQI (Open-Meteo Satellites)</i>
-             </div>
-             
+    <div style="position: fixed; bottom: 30px; left: 30px; width: 300px; 
+    background: rgba(0,0,0,0.8); color: white; padding: 10px; border: 1px solid #444; font-size:12px;">
+    <b>🏥 Health Risk Surveillance</b><br>
+    <i style="color:#ccc;">Live Data: Temp, AQI, Wet Bulb</i><br>
+    <span style="color:#ff0033">●</span> Crisis / Dangerous Environment<br>
+    <span style="color:#00ff00">●</span> Safe Environmental Limits<br>
+    </div>
     
-            <div class="folium-map" id="map_07ea025e2634e882b621b602eb1e20fc" ></div>
+    
+            <div class="folium-map" id="map_fd55ed70e28c93695eec6309e72be65e" ></div>
         
 </body>
 <script>
     
     
-            var map_07ea025e2634e882b621b602eb1e20fc = L.map(
-                "map_07ea025e2634e882b621b602eb1e20fc",
+            var map_fd55ed70e28c93695eec6309e72be65e = L.map(
+                "map_fd55ed70e28c93695eec6309e72be65e",
                 {
-                    center: [20.0, 0.0],
+                    center: [20.0, 10.0],
                     crs: L.CRS.EPSG3857,
                     ...{
   "zoom": 2,
@@ -94,7 +88,7 @@
 
         
     
-            var tile_layer_0925ca5a64a407992f566c3365f9ba3f = L.tileLayer(
+            var tile_layer_a6914bd3499aa56f8eda157d9a376c49 = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
@@ -111,1140 +105,780 @@
             );
         
     
-            tile_layer_0925ca5a64a407992f566c3365f9ba3f.addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            tile_layer_a6914bd3499aa56f8eda157d9a376c49.addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-    var color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478 = {};
-
-    
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.color = d3.scale.threshold()
-              .domain([0.0, 0.30060120240480964, 0.6012024048096193, 0.9018036072144289, 1.2024048096192386, 1.503006012024048, 1.8036072144288577, 2.1042084168336674, 2.404809619238477, 2.7054108216432864, 3.006012024048096, 3.306613226452906, 3.6072144288577155, 3.907815631262525, 4.208416833667335, 4.509018036072145, 4.809619238476954, 5.110220440881764, 5.410821643286573, 5.7114228456913825, 6.012024048096192, 6.312625250501002, 6.613226452905812, 6.913827655310621, 7.214428857715431, 7.515030060120241, 7.81563126252505, 8.11623246492986, 8.41683366733467, 8.71743486973948, 9.01803607214429, 9.318637274549099, 9.619238476953909, 9.919839679358718, 10.220440881763528, 10.521042084168336, 10.821643286573146, 11.122244488977955, 11.422845691382765, 11.723446893787575, 12.024048096192384, 12.324649298597194, 12.625250501002004, 12.925851703406813, 13.226452905811623, 13.527054108216433, 13.827655310621243, 14.128256513026052, 14.428857715430862, 14.729458917835672, 15.030060120240481, 15.330661322645291, 15.6312625250501, 15.93186372745491, 16.23246492985972, 16.53306613226453, 16.83366733466934, 17.13426853707415, 17.43486973947896, 17.73547094188377, 18.03607214428858, 18.336673346693388, 18.637274549098198, 18.937875751503007, 19.238476953907817, 19.539078156312627, 19.839679358717436, 20.140280561122246, 20.440881763527056, 20.741482965931862, 21.04208416833667, 21.34268537074148, 21.64328657314629, 21.9438877755511, 22.24448897795591, 22.54509018036072, 22.84569138276553, 23.14629258517034, 23.44689378757515, 23.74749498997996, 24.04809619238477, 24.34869739478958, 24.649298597194388, 24.949899799599198, 25.250501002004007, 25.551102204408817, 25.851703406813627, 26.152304609218437, 26.452905811623246, 26.753507014028056, 27.054108216432866, 27.354709418837675, 27.655310621242485, 27.955911823647295, 28.256513026052104, 28.557114228456914, 28.857715430861724, 29.158316633266534, 29.458917835671343, 29.759519038076153, 30.060120240480963, 30.360721442885772, 30.661322645290582, 30.96192384769539, 31.2625250501002, 31.56312625250501, 31.86372745490982, 32.16432865731463, 32.46492985971944, 32.765531062124246, 33.06613226452906, 33.366733466933866, 33.66733466933868, 33.967935871743485, 34.2685370741483, 34.569138276553105, 34.86973947895792, 35.170340681362724, 35.47094188376754, 35.77154308617234, 36.07214428857716, 36.37274549098196, 36.673346693386776, 36.97394789579158, 37.274549098196395, 37.5751503006012, 37.875751503006015, 38.17635270541082, 38.476953907815634, 38.77755511022044, 39.078156312625254, 39.37875751503006, 39.67935871743487, 39.97995991983968, 40.28056112224449, 40.5811623246493, 40.88176352705411, 41.18236472945892, 41.482965931863724, 41.78356713426854, 42.08416833667334, 42.38476953907816, 42.68537074148296, 42.985971943887776, 43.28657314629258, 43.587174348697395, 43.8877755511022, 44.188376753507015, 44.48897795591182, 44.789579158316634, 45.09018036072144, 45.390781563126254, 45.69138276553106, 45.99198396793587, 46.29258517034068, 46.59318637274549, 46.8937875751503, 47.19438877755511, 47.49498997995992, 47.79559118236473, 48.09619238476954, 48.39679358717435, 48.69739478957916, 48.99799599198397, 49.298597194388776, 49.59919839679359, 49.899799599198396, 50.20040080160321, 50.501002004008015, 50.80160320641283, 51.102204408817634, 51.40280561122245, 51.703406813627254, 52.00400801603207, 52.30460921843687, 52.605210420841686, 52.90581162324649, 53.206412825651306, 53.50701402805611, 53.807615230460925, 54.10821643286573, 54.408817635270545, 54.70941883767535, 55.01002004008016, 55.31062124248497, 55.611222444889776, 55.91182364729459, 56.212424849699396, 56.51302605210421, 56.813627254509015, 57.11422845691383, 57.414829659318634, 57.71543086172345, 58.016032064128254, 58.31663326653307, 58.61723446893787, 58.91783567134269, 59.21843687374749, 59.519038076152306, 59.81963927855711, 60.120240480961925, 60.42084168336673, 60.721442885771545, 61.02204408817635, 61.322645290581164, 61.62324649298597, 61.92384769539078, 62.22444889779559, 62.5250501002004, 62.82565130260521, 63.12625250501002, 63.42685370741483, 63.72745490981964, 64.02805611222445, 64.32865731462925, 64.62925851703407, 64.92985971943888, 65.23046092184369, 65.53106212424849, 65.83166332665331, 66.13226452905812, 66.43286573146293, 66.73346693386773, 67.03406813627255, 67.33466933867736, 67.63527054108216, 67.93587174348697, 68.23647294589178, 68.5370741482966, 68.8376753507014, 69.13827655310621, 69.43887775551102, 69.73947895791584, 70.04008016032064, 70.34068136272545, 70.64128256513025, 70.94188376753507, 71.24248496993988, 71.54308617234469, 71.84368737474949, 72.14428857715431, 72.44488977955912, 72.74549098196393, 73.04609218436873, 73.34669338677355, 73.64729458917836, 73.94789579158316, 74.24849699398797, 74.54909819639279, 74.8496993987976, 75.1503006012024, 75.45090180360721, 75.75150300601203, 76.05210420841684, 76.35270541082164, 76.65330661322645, 76.95390781563127, 77.25450901803607, 77.55511022044088, 77.85571142284569, 78.15631262525051, 78.45691382765531, 78.75751503006012, 79.05811623246493, 79.35871743486975, 79.65931863727455, 79.95991983967936, 80.26052104208416, 80.56112224448898, 80.86172344689379, 81.1623246492986, 81.4629258517034, 81.76352705410822, 82.06412825651303, 82.36472945891784, 82.66533066132264, 82.96593186372745, 83.26653306613227, 83.56713426853707, 83.86773547094188, 84.16833667334669, 84.46893787575151, 84.76953907815631, 85.07014028056112, 85.37074148296593, 85.67134268537075, 85.97194388777555, 86.27254509018036, 86.57314629258516, 86.87374749498998, 87.17434869739479, 87.4749498997996, 87.7755511022044, 88.07615230460922, 88.37675350701403, 88.67735470941884, 88.97795591182364, 89.27855711422846, 89.57915831663327, 89.87975951903807, 90.18036072144288, 90.4809619238477, 90.78156312625251, 91.08216432865731, 91.38276553106212, 91.68336673346694, 91.98396793587175, 92.28456913827655, 92.58517034068136, 92.88577154308618, 93.18637274549098, 93.48697394789579, 93.7875751503006, 94.08817635270542, 94.38877755511022, 94.68937875751503, 94.98997995991984, 95.29058116232466, 95.59118236472946, 95.89178356713427, 96.19238476953907, 96.49298597194388, 96.7935871743487, 97.09418837675351, 97.39478957915831, 97.69539078156312, 97.99599198396794, 98.29659318637275, 98.59719438877755, 98.89779559118236, 99.19839679358718, 99.49899799599199, 99.79959919839679, 100.1002004008016, 100.40080160320642, 100.70140280561122, 101.00200400801603, 101.30260521042084, 101.60320641282566, 101.90380761523046, 102.20440881763527, 102.50501002004007, 102.8056112224449, 103.1062124248497, 103.40681362725451, 103.70741482965931, 104.00801603206413, 104.30861723446894, 104.60921843687375, 104.90981963927855, 105.21042084168337, 105.51102204408818, 105.81162324649299, 106.11222444889779, 106.41282565130261, 106.71342685370742, 107.01402805611222, 107.31462925851703, 107.61523046092185, 107.91583166332666, 108.21643286573146, 108.51703406813627, 108.81763527054109, 109.1182364729459, 109.4188376753507, 109.71943887775551, 110.02004008016031, 110.32064128256513, 110.62124248496994, 110.92184368737475, 111.22244488977955, 111.52304609218437, 111.82364729458918, 112.12424849699399, 112.42484969939879, 112.72545090180361, 113.02605210420842, 113.32665330661322, 113.62725450901803, 113.92785571142285, 114.22845691382766, 114.52905811623246, 114.82965931863727, 115.13026052104209, 115.4308617234469, 115.7314629258517, 116.03206412825651, 116.33266533066133, 116.63326653306613, 116.93386773547094, 117.23446893787575, 117.53507014028057, 117.83567134268537, 118.13627254509018, 118.43687374749499, 118.7374749498998, 119.03807615230461, 119.33867735470942, 119.63927855711422, 119.93987975951904, 120.24048096192385, 120.54108216432866, 120.84168336673346, 121.14228456913828, 121.44288577154309, 121.7434869739479, 122.0440881763527, 122.34468937875752, 122.64529058116233, 122.94589178356713, 123.24649298597194, 123.54709418837675, 123.84769539078157, 124.14829659318637, 124.44889779559118, 124.74949899799599, 125.0501002004008, 125.35070140280561, 125.65130260521042, 125.95190380761522, 126.25250501002004, 126.55310621242485, 126.85370741482966, 127.15430861723446, 127.45490981963928, 127.75551102204409, 128.0561122244489, 128.3567134268537, 128.6573146292585, 128.9579158316633, 129.25851703406815, 129.55911823647295, 129.85971943887776, 130.16032064128257, 130.46092184368737, 130.76152304609218, 131.06212424849699, 131.3627254509018, 131.66332665330663, 131.96392785571143, 132.26452905811624, 132.56513026052104, 132.86573146292585, 133.16633266533066, 133.46693386773546, 133.76753507014027, 134.0681362725451, 134.3687374749499, 134.66933867735472, 134.96993987975952, 135.27054108216433, 135.57114228456913, 135.87174348697394, 136.17234468937875, 136.47294589178355, 136.7735470941884, 137.0741482965932, 137.374749498998, 137.6753507014028, 137.9759519038076, 138.27655310621242, 138.57715430861722, 138.87775551102203, 139.17835671342687, 139.47895791583167, 139.77955911823648, 140.08016032064128, 140.3807615230461, 140.6813627254509, 140.9819639278557, 141.2825651302605, 141.58316633266534, 141.88376753507015, 142.18436873747495, 142.48496993987976, 142.78557114228457, 143.08617234468937, 143.38677354709418, 143.68737474949899, 143.98797595190382, 144.28857715430863, 144.58917835671343, 144.88977955911824, 145.19038076152304, 145.49098196392785, 145.79158316633266, 146.09218436873746, 146.3927855711423, 146.6933867735471, 146.9939879759519, 147.29458917835672, 147.59519038076152, 147.89579158316633, 148.19639278557113, 148.49699398797594, 148.79759519038078, 149.09819639278558, 149.3987975951904, 149.6993987975952, 150.0])
-              .range(['#00ff00ff', '#01ff00ff', '#03ff00ff', '#04ff00ff', '#06ff00ff', '#07ff00ff', '#09ff00ff', '#0aff00ff', '#0cff00ff', '#0dff00ff', '#0fff00ff', '#10ff00ff', '#12ff00ff', '#14ff00ff', '#15ff00ff', '#17ff00ff', '#18ff00ff', '#1aff00ff', '#1bff00ff', '#1dff00ff', '#1eff00ff', '#20ff00ff', '#21ff00ff', '#23ff00ff', '#24ff00ff', '#26ff00ff', '#28ff00ff', '#29ff00ff', '#2bff00ff', '#2cff00ff', '#2eff00ff', '#2fff00ff', '#31ff00ff', '#32ff00ff', '#34ff00ff', '#35ff00ff', '#37ff00ff', '#38ff00ff', '#3aff00ff', '#3cff00ff', '#3dff00ff', '#3fff00ff', '#40ff00ff', '#42ff00ff', '#43ff00ff', '#45ff00ff', '#46ff00ff', '#48ff00ff', '#49ff00ff', '#4bff00ff', '#4cff00ff', '#4eff00ff', '#50ff00ff', '#51ff00ff', '#53ff00ff', '#54ff00ff', '#56ff00ff', '#57ff00ff', '#59ff00ff', '#5aff00ff', '#5cff00ff', '#5dff00ff', '#5fff00ff', '#60ff00ff', '#62ff00ff', '#64ff00ff', '#65ff00ff', '#67ff00ff', '#68ff00ff', '#6aff00ff', '#6bff00ff', '#6dff00ff', '#6eff00ff', '#70ff00ff', '#71ff00ff', '#73ff00ff', '#74ff00ff', '#76ff00ff', '#78ff00ff', '#79ff00ff', '#7bff00ff', '#7cff00ff', '#7eff00ff', '#7fff00ff', '#81ff00ff', '#82ff00ff', '#84ff00ff', '#85ff00ff', '#87ff00ff', '#88ff00ff', '#8aff00ff', '#8cff00ff', '#8dff00ff', '#8fff00ff', '#90ff00ff', '#92ff00ff', '#93ff00ff', '#95ff00ff', '#96ff00ff', '#98ff00ff', '#99ff00ff', '#9bff00ff', '#9cff00ff', '#9eff00ff', '#a0ff00ff', '#a1ff00ff', '#a3ff00ff', '#a4ff00ff', '#a6ff00ff', '#a7ff00ff', '#a9ff00ff', '#aaff00ff', '#acff00ff', '#adff00ff', '#afff00ff', '#b0ff00ff', '#b2ff00ff', '#b4ff00ff', '#b5ff00ff', '#b7ff00ff', '#b8ff00ff', '#baff00ff', '#bbff00ff', '#bdff00ff', '#beff00ff', '#c0ff00ff', '#c1ff00ff', '#c3ff00ff', '#c5ff00ff', '#c6ff00ff', '#c8ff00ff', '#c9ff00ff', '#cbff00ff', '#ccff00ff', '#ceff00ff', '#cfff00ff', '#d1ff00ff', '#d2ff00ff', '#d4ff00ff', '#d5ff00ff', '#d7ff00ff', '#d9ff00ff', '#daff00ff', '#dcff00ff', '#ddff00ff', '#dfff00ff', '#e0ff00ff', '#e2ff00ff', '#e3ff00ff', '#e5ff00ff', '#e6ff00ff', '#e8ff00ff', '#e9ff00ff', '#ebff00ff', '#edff00ff', '#eeff00ff', '#f0ff00ff', '#f1ff00ff', '#f3ff00ff', '#f4ff00ff', '#f6ff00ff', '#f7ff00ff', '#f9ff00ff', '#faff00ff', '#fcff00ff', '#fdff00ff', '#ffff00ff', '#fffe00ff', '#fffd00ff', '#fffb00ff', '#fffa00ff', '#fff800ff', '#fff700ff', '#fff500ff', '#fff400ff', '#fff200ff', '#fff100ff', '#ffef00ff', '#ffee00ff', '#ffec00ff', '#ffea00ff', '#ffe900ff', '#ffe700ff', '#ffe600ff', '#ffe400ff', '#ffe300ff', '#ffe100ff', '#ffe000ff', '#ffde00ff', '#ffdd00ff', '#ffdb00ff', '#ffda00ff', '#ffd800ff', '#ffd600ff', '#ffd500ff', '#ffd300ff', '#ffd200ff', '#ffd000ff', '#ffcf00ff', '#ffcd00ff', '#ffcc00ff', '#ffca00ff', '#ffc900ff', '#ffc700ff', '#ffc600ff', '#ffc400ff', '#ffc200ff', '#ffc100ff', '#ffbf00ff', '#ffbe00ff', '#ffbc00ff', '#ffbb00ff', '#ffb900ff', '#ffb800ff', '#ffb600ff', '#ffb500ff', '#ffb300ff', '#ffb200ff', '#ffb000ff', '#ffae00ff', '#ffad00ff', '#ffab00ff', '#ffaa00ff', '#ffa800ff', '#ffa700ff', '#ffa500ff', '#ffa400ff', '#ffa200ff', '#ffa100ff', '#ff9f00ff', '#ff9e00ff', '#ff9c00ff', '#ff9a00ff', '#ff9900ff', '#ff9700ff', '#ff9600ff', '#ff9400ff', '#ff9300ff', '#ff9100ff', '#ff9000ff', '#ff8e00ff', '#ff8d00ff', '#ff8b00ff', '#ff8a00ff', '#ff8800ff', '#ff8600ff', '#ff8500ff', '#ff8300ff', '#ff8200ff', '#ff8000ff', '#ff7f00ff', '#ff7d00ff', '#ff7c00ff', '#ff7a00ff', '#ff7900ff', '#ff7700ff', '#ff7500ff', '#ff7400ff', '#ff7200ff', '#ff7100ff', '#ff6f00ff', '#ff6e00ff', '#ff6c00ff', '#ff6b00ff', '#ff6900ff', '#ff6800ff', '#ff6600ff', '#ff6500ff', '#ff6300ff', '#ff6100ff', '#ff6000ff', '#ff5e00ff', '#ff5d00ff', '#ff5b00ff', '#ff5a00ff', '#ff5800ff', '#ff5700ff', '#ff5500ff', '#ff5400ff', '#ff5200ff', '#ff5100ff', '#ff4f00ff', '#ff4d00ff', '#ff4c00ff', '#ff4a00ff', '#ff4900ff', '#ff4700ff', '#ff4600ff', '#ff4400ff', '#ff4300ff', '#ff4100ff', '#ff4000ff', '#ff3e00ff', '#ff3d00ff', '#ff3b00ff', '#ff3900ff', '#ff3800ff', '#ff3600ff', '#ff3500ff', '#ff3300ff', '#ff3200ff', '#ff3000ff', '#ff2f00ff', '#ff2d00ff', '#ff2c00ff', '#ff2a00ff', '#ff2900ff', '#ff2700ff', '#ff2500ff', '#ff2400ff', '#ff2200ff', '#ff2100ff', '#ff1f00ff', '#ff1e00ff', '#ff1c00ff', '#ff1b00ff', '#ff1900ff', '#ff1800ff', '#ff1600ff', '#ff1500ff', '#ff1300ff', '#ff1100ff', '#ff1000ff', '#ff0e00ff', '#ff0d00ff', '#ff0b00ff', '#ff0a00ff', '#ff0800ff', '#ff0700ff', '#ff0500ff', '#ff0400ff', '#ff0200ff', '#ff0100ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff', '#ff0000ff']);
-    
-
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.x = d3.scale.linear()
-              .domain([0.0, 150.0])
-              .range([0, 450 - 50]);
-
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.legend = L.control({position: 'topright'});
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.legend.onAdd = function (map) {var div = L.DomUtil.create('div', 'legend'); return div};
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.legend.addTo(map_07ea025e2634e882b621b602eb1e20fc);
-
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.xAxis = d3.svg.axis()
-        .scale(color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.x)
-        .orient("top")
-        .tickSize(1)
-        .tickValues([0.0, 50.0, 100.0]);
-
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.svg = d3.select(".legend.leaflet-control").append("svg")
-        .attr("id", 'legend')
-        .attr("width", 450)
-        .attr("height", 40);
-
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.g = color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.svg.append("g")
-        .attr("class", "key")
-        .attr("fill", "black")
-        .attr("transform", "translate(25,16)");
-
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.g.selectAll("rect")
-        .data(color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.color.range().map(function(d, i) {
-          return {
-            x0: i ? color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.x(color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.color.domain()[i - 1]) : color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.x.range()[0],
-            x1: i < color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.color.domain().length ? color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.x(color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.color.domain()[i]) : color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.x.range()[1],
-            z: d
-          };
-        }))
-      .enter().append("rect")
-        .attr("height", 40 - 30)
-        .attr("x", function(d) { return d.x0; })
-        .attr("width", function(d) { return d.x1 - d.x0; })
-        .style("fill", function(d) { return d.z; });
-
-    color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.g.call(color_map_74fc9c7f55a1f57c0d2ed9eaef7f1478.xAxis).append("text")
-        .attr("class", "caption")
-        .attr("y", 21)
-        .attr("fill", "black")
-        .text("Live Air Quality Index (AQI) - Green=Clean, Red=Hazardous");
-    
-            var circle_marker_eb71c0afa003e835660cb0fccd4f7da3 = L.circleMarker(
+            var circle_marker_7ecf08a6e6a04cd1bc3005bffbed7fce = L.circleMarker(
                 [15.5007, 32.5599],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.5, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_13dc7b0181f1e2f5c2132a7632eaf6c4 = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_644b8c7e0392db0f9d84d4b57287511c = $(`<div id="html_644b8c7e0392db0f9d84d4b57287511c" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Sudan (Khartoum)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 1,100,000<br>                 <b>⚠️ Hazard:</b> Extreme Drought<br>                 <b>🌡️ Climate Risk:</b> 8.5/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 28.5°C | <b>Humidity:</b> 26%<br>                 <b>AQI:</b> 55 | <b>PM2.5:</b> 14.5 µg/m³             </div>         </div>         </div>`)[0];
-                popup_13dc7b0181f1e2f5c2132a7632eaf6c4.setContent(html_644b8c7e0392db0f9d84d4b57287511c);
-            
-        
-
-        circle_marker_eb71c0afa003e835660cb0fccd4f7da3.bindPopup(popup_13dc7b0181f1e2f5c2132a7632eaf6c4)
-        ;
-
-        
-    
-    
-            var circle_marker_33f448a03bd59c692715d29f9a6fbabd = L.circleMarker(
-                [32.293, 36.328],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 37.5, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_d3720255fae87797a772176bcf2b4a10 = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_e7f09db790232644672da85ebd3df0e3 = $(`<div id="html_e7f09db790232644672da85ebd3df0e3" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Syria (Zaatari)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 6,500,000<br>                 <b>⚠️ Hazard:</b> Water Scarcity<br>                 <b>🌡️ Climate Risk:</b> 7.8/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 7.8°C | <b>Humidity:</b> 90%<br>                 <b>AQI:</b> 40 | <b>PM2.5:</b> 5.8 µg/m³             </div>         </div>         </div>`)[0];
-                popup_d3720255fae87797a772176bcf2b4a10.setContent(html_e7f09db790232644672da85ebd3df0e3);
-            
-        
-
-        circle_marker_33f448a03bd59c692715d29f9a6fbabd.bindPopup(popup_d3720255fae87797a772176bcf2b4a10)
-        ;
-
-        
-    
-    
-            var circle_marker_8b76f85c54582942db2361fc2db6c847 = L.circleMarker(
-                [21.4272, 92.0058],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.8, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_c3b3f9f17d765d4d21b7479a7ca1365e = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_cff61eb30517a47f3b4c7a7484cec44b = $(`<div id="html_cff61eb30517a47f3b4c7a7484cec44b" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Bangladesh (Cox's Bazar)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 960,000<br>                 <b>⚠️ Hazard:</b> Flood & Cyclone<br>                 <b>🌡️ Climate Risk:</b> 9.2/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 18.0°C | <b>Humidity:</b> 96%<br>                 <b>AQI:</b> 140 | <b>PM2.5:</b> 59.4 µg/m³             </div>         </div>         </div>`)[0];
-                popup_c3b3f9f17d765d4d21b7479a7ca1365e.setContent(html_cff61eb30517a47f3b4c7a7484cec44b);
-            
-        
-
-        circle_marker_8b76f85c54582942db2361fc2db6c847.bindPopup(popup_c3b3f9f17d765d4d21b7479a7ca1365e)
-        ;
-
-        
-    
-    
-            var circle_marker_92d1274e2311b0b523e4054f9df3dc15 = L.circleMarker(
-                [34.5553, 69.2075],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.0, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_c2041feae5d58db831bbee22628732ae = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_719f7c37380c673a3b7222cd2383e798 = $(`<div id="html_719f7c37380c673a3b7222cd2383e798" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Afghanistan (Kabul)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 2,800,000<br>                 <b>⚠️ Hazard:</b> Food Insecurity<br>                 <b>🌡️ Climate Risk:</b> 8.1/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 2.0°C | <b>Humidity:</b> 46%<br>                 <b>AQI:</b> 163 | <b>PM2.5:</b> 29.9 µg/m³             </div>         </div>         </div>`)[0];
-                popup_c2041feae5d58db831bbee22628732ae.setContent(html_719f7c37380c673a3b7222cd2383e798);
-            
-        
-
-        circle_marker_92d1274e2311b0b523e4054f9df3dc15.bindPopup(popup_c2041feae5d58db831bbee22628732ae)
-        ;
-
-        
-    
-    
-            var circle_marker_5054b847c99428e7efff34f0d100c540 = L.circleMarker(
-                [0.0514, 40.304],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.0, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_dd2e33ecea9fb131f6fe0aae47439dba = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_1c48b1daff44c10144f5815e93aca2ba = $(`<div id="html_1c48b1daff44c10144f5815e93aca2ba" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Somalia (Dadaab)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 3,000,000<br>                 <b>⚠️ Hazard:</b> Famine Risk<br>                 <b>🌡️ Climate Risk:</b> 9.0/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 32.5°C | <b>Humidity:</b> 81%<br>                 <b>AQI:</b> 37 | <b>PM2.5:</b> 10.0 µg/m³             </div>         </div>         </div>`)[0];
-                popup_dd2e33ecea9fb131f6fe0aae47439dba.setContent(html_1c48b1daff44c10144f5815e93aca2ba);
-            
-        
-
-        circle_marker_5054b847c99428e7efff34f0d100c540.bindPopup(popup_dd2e33ecea9fb131f6fe0aae47439dba)
-        ;
-
-        
-    
-    
-            var circle_marker_fb0ddb444087e93ab80775440c7554ef = L.circleMarker(
-                [50.4501, 30.5234],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 34.5, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_7df5e92197b7b3a78ab180763aaef732 = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_d3bf0fed54030e4dadf38df9098eeaf5 = $(`<div id="html_d3bf0fed54030e4dadf38df9098eeaf5" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Ukraine (Kyiv)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 5,900,000<br>                 <b>⚠️ Hazard:</b> Conflict Zone<br>                 <b>🌡️ Climate Risk:</b> 3.5/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> -0.6°C | <b>Humidity:</b> 81%<br>                 <b>AQI:</b> 51 | <b>PM2.5:</b> 13.3 µg/m³             </div>         </div>         </div>`)[0];
-                popup_7df5e92197b7b3a78ab180763aaef732.setContent(html_d3bf0fed54030e4dadf38df9098eeaf5);
-            
-        
-
-        circle_marker_fb0ddb444087e93ab80775440c7554ef.bindPopup(popup_7df5e92197b7b3a78ab180763aaef732)
-        ;
-
-        
-    
-    
-            var circle_marker_a136a2c925c9287a202dd2f48d0ba75e = L.circleMarker(
-                [12.1348, 15.0557],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.0, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_b15249e141190916e5a7af7641754011 = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_6cb17666df7a54dfd74c5f281d1d5a7f = $(`<div id="html_6cb17666df7a54dfd74c5f281d1d5a7f" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Chad (N'Djamena)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 600,000<br>                 <b>⚠️ Hazard:</b> Desertification<br>                 <b>🌡️ Climate Risk:</b> 8.8/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 32.2°C | <b>Humidity:</b> 31%<br>                 <b>AQI:</b> 78 | <b>PM2.5:</b> 16.5 µg/m³             </div>         </div>         </div>`)[0];
-                popup_b15249e141190916e5a7af7641754011.setContent(html_6cb17666df7a54dfd74c5f281d1d5a7f);
-            
-        
-
-        circle_marker_a136a2c925c9287a202dd2f48d0ba75e.bindPopup(popup_b15249e141190916e5a7af7641754011)
-        ;
-
-        
-    
-    
-            var circle_marker_ac42f4889efb3b22ed7bd62d254c6bad = L.circleMarker(
-                [15.3694, 44.191],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 27.5, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_2a7701d60d5a153811a57b22eb8c5a18 = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_5b0523feffee936bcc6c973416de46ea = $(`<div id="html_5b0523feffee936bcc6c973416de46ea" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Yemen (Sana'a)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 4,500,000<br>                 <b>⚠️ Hazard:</b> Water Collapse<br>                 <b>🌡️ Climate Risk:</b> 8.9/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 13.2°C | <b>Humidity:</b> 52%<br>                 <b>AQI:</b> 51 | <b>PM2.5:</b> 6.2 µg/m³             </div>         </div>         </div>`)[0];
-                popup_2a7701d60d5a153811a57b22eb8c5a18.setContent(html_5b0523feffee936bcc6c973416de46ea);
-            
-        
-
-        circle_marker_ac42f4889efb3b22ed7bd62d254c6bad.bindPopup(popup_2a7701d60d5a153811a57b22eb8c5a18)
-        ;
-
-        
-    
-    
-            var circle_marker_796482c3c69767302a05cfc088129459 = L.circleMarker(
-                [41.0082, 28.9784],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.5, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_93b1bc9bb989be4740ae140088558c60 = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_3f30c1ec6c3fedbc570bd6408b33843d = $(`<div id="html_3f30c1ec6c3fedbc570bd6408b33843d" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Turkey (Istanbul)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 3,700,000<br>                 <b>⚠️ Hazard:</b> Heat Stress<br>                 <b>🌡️ Climate Risk:</b> 5.5/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 7.2°C | <b>Humidity:</b> 71%<br>                 <b>AQI:</b> 91 | <b>PM2.5:</b> 28.2 µg/m³             </div>         </div>         </div>`)[0];
-                popup_93b1bc9bb989be4740ae140088558c60.setContent(html_3f30c1ec6c3fedbc570bd6408b33843d);
-            
-        
-
-        circle_marker_796482c3c69767302a05cfc088129459.bindPopup(popup_93b1bc9bb989be4740ae140088558c60)
-        ;
-
-        
-    
-    
-            var circle_marker_4f21f0ac4b34efb2f301b9c5698a47b6 = L.circleMarker(
-                [9.0331, 38.7444],
                 {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.5, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_0b7f6935833c9f11762e0080cae82fac = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_d05c1208df32c91034796b29a8501074 = $(`<div id="html_d05c1208df32c91034796b29a8501074" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Ethiopia (Addis Ababa)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 900,000<br>                 <b>⚠️ Hazard:</b> Agricultural Failure<br>                 <b>🌡️ Climate Risk:</b> 7.9/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 15.2°C | <b>Humidity:</b> 87%<br>                 <b>AQI:</b> 79 | <b>PM2.5:</b> 16.4 µg/m³             </div>         </div>         </div>`)[0];
-                popup_0b7f6935833c9f11762e0080cae82fac.setContent(html_d05c1208df32c91034796b29a8501074);
-            
-        
-
-        circle_marker_4f21f0ac4b34efb2f301b9c5698a47b6.bindPopup(popup_0b7f6935833c9f11762e0080cae82fac)
-        ;
-
-        
-    
-    
-            var circle_marker_5ab3b58a62f0417d8ca71564099d7586 = L.circleMarker(
-                [18.5944, -72.3074],
-                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.5, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_9225bc071b741b09db9701044f41d5df = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_ad5578df4348ca0d376a8f1257fa2dcb = $(`<div id="html_ad5578df4348ca0d376a8f1257fa2dcb" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:250px;">             <h4 style="margin:0; border-bottom:2px solid red; padding-bottom:5px;">Haiti (Port-au-Prince)</h4>             <span style="background-color:red; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>👥 Refugees:</b> 500,000<br>                 <b>⚠️ Hazard:</b> Storms & Instability<br>                 <b>🌡️ Climate Risk:</b> 9.1/10 (ND-GAIN)<br>             </div>             <hr style="border-top:1px solid #444;">             <div style="font-size:12px; color:#aaa;">                 <b>Temp:</b> 28.0°C | <b>Humidity:</b> 81%<br>                 <b>AQI:</b> 93 | <b>PM2.5:</b> 18.5 µg/m³             </div>         </div>         </div>`)[0];
-                popup_9225bc071b741b09db9701044f41d5df.setContent(html_ad5578df4348ca0d376a8f1257fa2dcb);
-            
-        
-
-        circle_marker_5ab3b58a62f0417d8ca71564099d7586.bindPopup(popup_9225bc071b741b09db9701044f41d5df)
-        ;
-
-        
-    
-    
-            var circle_marker_7e51257b7c223dac3f319cbc5cd0639c = L.circleMarker(
-                [38.9072, -77.0369],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_ed17fa1a3511315e7cbf532bf7071464 = L.popup({
+        var popup_c3d1056a10a60da868488aad20fe626d = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_e8a6d90759b791efeb76d4c85715e964 = $(`<div id="html_e8a6d90759b791efeb76d4c85715e964" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">USA (Washington DC)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 59<br>                 <b>🌫️ Pollutants (PM2.5):</b> 27.3 µg/m³<br>                 <b>🌡️ Temp:</b> 0.9°C<br>                 <b>💧 Humidity:</b> 32%<br>                 <b>💨 Wind:</b> 4.1 km/h             </div>         </div>         </div>`)[0];
-                popup_ed17fa1a3511315e7cbf532bf7071464.setContent(html_e8a6d90759b791efeb76d4c85715e964);
+                var html_2875e0e68d9a92fd8ea99e185a2b7d77 = $(`<div id="html_2875e0e68d9a92fd8ea99e185a2b7d77" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Sudan (Khartoum)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 26.9°C <br>                 <b>💧 Humidity:</b> 26% <br>                 <b>🔥 Wet Bulb:</b> 15.2°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 54 | <b>PM2.5:</b> 17.1<br>             </div>         </div>         </div>`)[0];
+                popup_c3d1056a10a60da868488aad20fe626d.setContent(html_2875e0e68d9a92fd8ea99e185a2b7d77);
             
         
 
-        circle_marker_7e51257b7c223dac3f319cbc5cd0639c.bindPopup(popup_ed17fa1a3511315e7cbf532bf7071464)
+        circle_marker_7ecf08a6e6a04cd1bc3005bffbed7fce.bindPopup(popup_c3d1056a10a60da868488aad20fe626d)
         ;
 
         
     
     
-            var circle_marker_7b133a6b7257c737f0047bf69b4187f3 = L.circleMarker(
+            var circle_marker_2a58d7a5619c192de12bb1d860b0a11e = L.circleMarker(
+                [32.293, 36.328],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 36.5, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_463e9ab7e38fb81a49d7875fdc60b640 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6fe3267bdf4624f1a9b51fc6c25d1527 = $(`<div id="html_6fe3267bdf4624f1a9b51fc6c25d1527" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Syria (Zaatari)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 7.1°C <br>                 <b>💧 Humidity:</b> 90% <br>                 <b>🔥 Wet Bulb:</b> 6.1°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 39 | <b>PM2.5:</b> 8.1<br>             </div>         </div>         </div>`)[0];
+                popup_463e9ab7e38fb81a49d7875fdc60b640.setContent(html_6fe3267bdf4624f1a9b51fc6c25d1527);
+            
+        
+
+        circle_marker_2a58d7a5619c192de12bb1d860b0a11e.bindPopup(popup_463e9ab7e38fb81a49d7875fdc60b640)
+        ;
+
+        
+    
+    
+            var circle_marker_d6a5153cc3070b75f246ad49fcda4bf5 = L.circleMarker(
+                [21.4272, 92.0058],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.8, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_9089c2bf4058fd1cbdd3bc1a3d3d66e2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c4a3030d30d0802545cf65431d9114ae = $(`<div id="html_c4a3030d30d0802545cf65431d9114ae" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Bangladesh (Cox's Bazar)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 17.5°C <br>                 <b>💧 Humidity:</b> 96% <br>                 <b>🔥 Wet Bulb:</b> 17.0°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 133 | <b>PM2.5:</b> 60.1<br>             </div>         </div>         </div>`)[0];
+                popup_9089c2bf4058fd1cbdd3bc1a3d3d66e2.setContent(html_c4a3030d30d0802545cf65431d9114ae);
+            
+        
+
+        circle_marker_d6a5153cc3070b75f246ad49fcda4bf5.bindPopup(popup_9089c2bf4058fd1cbdd3bc1a3d3d66e2)
+        ;
+
+        
+    
+    
+            var circle_marker_c4763b087a001416d0dc072f4a2da22d = L.circleMarker(
+                [34.5553, 69.2075],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.0, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_7f8ce4550dd09819d00376dc66ed67d6 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6665eb7abda9d69f1c439c96a61faacc = $(`<div id="html_6665eb7abda9d69f1c439c96a61faacc" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Afghanistan (Kabul)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 1.8°C <br>                 <b>💧 Humidity:</b> 46% <br>                 <b>🔥 Wet Bulb:</b> -2.2°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 128 | <b>PM2.5:</b> 25.1<br>             </div>         </div>         </div>`)[0];
+                popup_7f8ce4550dd09819d00376dc66ed67d6.setContent(html_6665eb7abda9d69f1c439c96a61faacc);
+            
+        
+
+        circle_marker_c4763b087a001416d0dc072f4a2da22d.bindPopup(popup_7f8ce4550dd09819d00376dc66ed67d6)
+        ;
+
+        
+    
+    
+            var circle_marker_5c017cec011bf9d2f3ce67913d685c3d = L.circleMarker(
+                [0.0514, 40.304],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.0, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_d4dc9e1039376e43f7462b5bb1fd9a5f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_2bb5f4d46c354539bbc17c11f56130ee = $(`<div id="html_2bb5f4d46c354539bbc17c11f56130ee" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Somalia (Dadaab)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 31.6°C <br>                 <b>💧 Humidity:</b> 81% <br>                 <b>🔥 Wet Bulb:</b> 28.8°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 38 | <b>PM2.5:</b> 10.4<br>             </div>         </div>         </div>`)[0];
+                popup_d4dc9e1039376e43f7462b5bb1fd9a5f.setContent(html_2bb5f4d46c354539bbc17c11f56130ee);
+            
+        
+
+        circle_marker_5c017cec011bf9d2f3ce67913d685c3d.bindPopup(popup_d4dc9e1039376e43f7462b5bb1fd9a5f)
+        ;
+
+        
+    
+    
+            var circle_marker_04f1ecba4539dc750dfab8ee0abca7f5 = L.circleMarker(
+                [50.4501, 30.5234],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 33.5, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_a62ba8ad36883c823395a6b6cd075800 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8ca1339e7bf7cd0b3fd727e6abddadca = $(`<div id="html_8ca1339e7bf7cd0b3fd727e6abddadca" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Ukraine (Kyiv)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> -0.6°C <br>                 <b>💧 Humidity:</b> 81% <br>                 <b>🔥 Wet Bulb:</b> -2.2°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 49 | <b>PM2.5:</b> 14.8<br>             </div>         </div>         </div>`)[0];
+                popup_a62ba8ad36883c823395a6b6cd075800.setContent(html_8ca1339e7bf7cd0b3fd727e6abddadca);
+            
+        
+
+        circle_marker_04f1ecba4539dc750dfab8ee0abca7f5.bindPopup(popup_a62ba8ad36883c823395a6b6cd075800)
+        ;
+
+        
+    
+    
+            var circle_marker_161bccb80a66d28e218bb279e3bbee95 = L.circleMarker(
+                [12.1348, 15.0557],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.0, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_f71f44b06778bd384055e99aa484665a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_185e483d7795d184d2f0d698d6b08ffd = $(`<div id="html_185e483d7795d184d2f0d698d6b08ffd" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Chad (N'Djamena)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 29.0°C <br>                 <b>💧 Humidity:</b> 31% <br>                 <b>🔥 Wet Bulb:</b> 17.8°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 80 | <b>PM2.5:</b> 21.7<br>             </div>         </div>         </div>`)[0];
+                popup_f71f44b06778bd384055e99aa484665a.setContent(html_185e483d7795d184d2f0d698d6b08ffd);
+            
+        
+
+        circle_marker_161bccb80a66d28e218bb279e3bbee95.bindPopup(popup_f71f44b06778bd384055e99aa484665a)
+        ;
+
+        
+    
+    
+            var circle_marker_f0ebca7893c00f3da64753a4fc84fa38 = L.circleMarker(
+                [15.3694, 44.191],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 26.5, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_292735898f07f31690f34c7043f03a92 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_08b69c33d0fdfd065f4b416032aedfee = $(`<div id="html_08b69c33d0fdfd065f4b416032aedfee" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Yemen (Sana'a)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 12.6°C <br>                 <b>💧 Humidity:</b> 52% <br>                 <b>🔥 Wet Bulb:</b> 7.5°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 49 | <b>PM2.5:</b> 10.5<br>             </div>         </div>         </div>`)[0];
+                popup_292735898f07f31690f34c7043f03a92.setContent(html_08b69c33d0fdfd065f4b416032aedfee);
+            
+        
+
+        circle_marker_f0ebca7893c00f3da64753a4fc84fa38.bindPopup(popup_292735898f07f31690f34c7043f03a92)
+        ;
+
+        
+    
+    
+            var circle_marker_d2e6a6a327192a8c6bf0ffadae4791e3 = L.circleMarker(
+                [41.0082, 28.9784],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22.5, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_c0836e422cd58942c9514ff635e5c226 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_daaf54879cf9d961b34246564b764482 = $(`<div id="html_daaf54879cf9d961b34246564b764482" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Turkey (Istanbul)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 7.9°C <br>                 <b>💧 Humidity:</b> 71% <br>                 <b>🔥 Wet Bulb:</b> 5.1°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 78 | <b>PM2.5:</b> 21.7<br>             </div>         </div>         </div>`)[0];
+                popup_c0836e422cd58942c9514ff635e5c226.setContent(html_daaf54879cf9d961b34246564b764482);
+            
+        
+
+        circle_marker_d2e6a6a327192a8c6bf0ffadae4791e3.bindPopup(popup_c0836e422cd58942c9514ff635e5c226)
+        ;
+
+        
+    
+    
+            var circle_marker_1bc1ae24ec9cdd45f89877092940e332 = L.circleMarker(
+                [9.0331, 38.7444],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.5, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_07898751d3dd167d8e979cefdf6ef97d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_21c4aaced52fbbbf616c40a892efd033 = $(`<div id="html_21c4aaced52fbbbf616c40a892efd033" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Ethiopia (Addis Ababa)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 13.9°C <br>                 <b>💧 Humidity:</b> 87% <br>                 <b>🔥 Wet Bulb:</b> 12.4°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 77 | <b>PM2.5:</b> 23.3<br>             </div>         </div>         </div>`)[0];
+                popup_07898751d3dd167d8e979cefdf6ef97d.setContent(html_21c4aaced52fbbbf616c40a892efd033);
+            
+        
+
+        circle_marker_1bc1ae24ec9cdd45f89877092940e332.bindPopup(popup_07898751d3dd167d8e979cefdf6ef97d)
+        ;
+
+        
+    
+    
+            var circle_marker_11a6210019221c9d4dc4119cef9a18c7 = L.circleMarker(
+                [18.5944, -72.3074],
+                {"bubblingMouseEvents": true, "color": "#ff0033", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0033", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.5, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_6e45cf1ef91f38f8a1dcafabb90bf9a3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_34747a8cf081e198b03e9742736bca63 = $(`<div id="html_34747a8cf081e198b03e9742736bca63" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0033;">Haiti (Port-au-Prince)</h4>             <span style="font-size:10px; background:#ff0033; color:black; padding:1px 4px; border-radius:3px;">CRISIS ZONE</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 28.6°C <br>                 <b>💧 Humidity:</b> 81% <br>                 <b>🔥 Wet Bulb:</b> 25.9°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 93 | <b>PM2.5:</b> 16.9<br>             </div>         </div>         </div>`)[0];
+                popup_6e45cf1ef91f38f8a1dcafabb90bf9a3.setContent(html_34747a8cf081e198b03e9742736bca63);
+            
+        
+
+        circle_marker_11a6210019221c9d4dc4119cef9a18c7.bindPopup(popup_6e45cf1ef91f38f8a1dcafabb90bf9a3)
+        ;
+
+        
+    
+    
+            var circle_marker_82c59aaf71ce5c3af3feaac76aed273c = L.circleMarker(
+                [38.9072, -77.0369],
+                {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
+        
+    
+        var popup_ea4b3d1dd18fe0a33d41924a2d906f0d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_97324db2c6d85954f105adebe1fdcb46 = $(`<div id="html_97324db2c6d85954f105adebe1fdcb46" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">USA (Washington DC)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 1.0°C <br>                 <b>💧 Humidity:</b> 32% <br>                 <b>🔥 Wet Bulb:</b> -3.5°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 62 | <b>PM2.5:</b> 25.3<br>             </div>         </div>         </div>`)[0];
+                popup_ea4b3d1dd18fe0a33d41924a2d906f0d.setContent(html_97324db2c6d85954f105adebe1fdcb46);
+            
+        
+
+        circle_marker_82c59aaf71ce5c3af3feaac76aed273c.bindPopup(popup_ea4b3d1dd18fe0a33d41924a2d906f0d)
+        ;
+
+        
+    
+    
+            var circle_marker_a092b8e560d30b60c5b7d87692feab49 = L.circleMarker(
                 [51.5074, -0.1278],
                 {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_fb249aa55fc158ee8fd54e5b04693dda = L.popup({
+        var popup_f14245c3f222953655307754a5da78bf = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_4d06cd8233f8b733c5247ee4b12990aa = $(`<div id="html_4d06cd8233f8b733c5247ee4b12990aa" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">UK (London)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 25<br>                 <b>🌫️ Pollutants (PM2.5):</b> 5.0 µg/m³<br>                 <b>🌡️ Temp:</b> 3.0°C<br>                 <b>💧 Humidity:</b> 76%<br>                 <b>💨 Wind:</b> 8.7 km/h             </div>         </div>         </div>`)[0];
-                popup_fb249aa55fc158ee8fd54e5b04693dda.setContent(html_4d06cd8233f8b733c5247ee4b12990aa);
+                var html_95a52fab434753ef1332e56f16579a74 = $(`<div id="html_95a52fab434753ef1332e56f16579a74" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">UK (London)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 2.4°C <br>                 <b>💧 Humidity:</b> 76% <br>                 <b>🔥 Wet Bulb:</b> 0.3°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 26 | <b>PM2.5:</b> 7.2<br>             </div>         </div>         </div>`)[0];
+                popup_f14245c3f222953655307754a5da78bf.setContent(html_95a52fab434753ef1332e56f16579a74);
             
         
 
-        circle_marker_7b133a6b7257c737f0047bf69b4187f3.bindPopup(popup_fb249aa55fc158ee8fd54e5b04693dda)
+        circle_marker_a092b8e560d30b60c5b7d87692feab49.bindPopup(popup_f14245c3f222953655307754a5da78bf)
         ;
 
         
     
     
-            var circle_marker_06bcd71d8d13af189f8a31719da2f959 = L.circleMarker(
+            var circle_marker_574d5d1e6fd6de4813932737439a0164 = L.circleMarker(
                 [48.8566, 2.3522],
                 {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_a09a45c0045cad2de495efb30a46d861 = L.popup({
+        var popup_9f8065917a64463f68dbbecebe83dcd7 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_d338ac21428045eb136e164d5f6294de = $(`<div id="html_d338ac21428045eb136e164d5f6294de" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">France (Paris)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 38<br>                 <b>🌫️ Pollutants (PM2.5):</b> 6.3 µg/m³<br>                 <b>🌡️ Temp:</b> 2.8°C<br>                 <b>💧 Humidity:</b> 85%<br>                 <b>💨 Wind:</b> 7.8 km/h             </div>         </div>         </div>`)[0];
-                popup_a09a45c0045cad2de495efb30a46d861.setContent(html_d338ac21428045eb136e164d5f6294de);
+                var html_89bdb295bd212a6bf968c1823968ff15 = $(`<div id="html_89bdb295bd212a6bf968c1823968ff15" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">France (Paris)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 2.3°C <br>                 <b>💧 Humidity:</b> 85% <br>                 <b>🔥 Wet Bulb:</b> 0.9°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 36 | <b>PM2.5:</b> 13.6<br>             </div>         </div>         </div>`)[0];
+                popup_9f8065917a64463f68dbbecebe83dcd7.setContent(html_89bdb295bd212a6bf968c1823968ff15);
             
         
 
-        circle_marker_06bcd71d8d13af189f8a31719da2f959.bindPopup(popup_a09a45c0045cad2de495efb30a46d861)
+        circle_marker_574d5d1e6fd6de4813932737439a0164.bindPopup(popup_9f8065917a64463f68dbbecebe83dcd7)
         ;
 
         
     
     
-            var circle_marker_c214fb39893934185881708307a4504d = L.circleMarker(
+            var circle_marker_4e329db847e5aa62a5a706d59cc63717 = L.circleMarker(
                 [52.52, 13.405],
                 {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_dedfe41725180379d379f424880c072b = L.popup({
+        var popup_2081aa17c7a2fc4f0ca95ef4eb02d469 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_24012b449b486bc589db628a85b12a28 = $(`<div id="html_24012b449b486bc589db628a85b12a28" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">Germany (Berlin)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 30<br>                 <b>🌫️ Pollutants (PM2.5):</b> 4.0 µg/m³<br>                 <b>🌡️ Temp:</b> 2.2°C<br>                 <b>💧 Humidity:</b> 74%<br>                 <b>💨 Wind:</b> 22.1 km/h             </div>         </div>         </div>`)[0];
-                popup_dedfe41725180379d379f424880c072b.setContent(html_24012b449b486bc589db628a85b12a28);
+                var html_2811c2cb58a150386f24925d01a7a392 = $(`<div id="html_2811c2cb58a150386f24925d01a7a392" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Germany (Berlin)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 1.5°C <br>                 <b>💧 Humidity:</b> 74% <br>                 <b>🔥 Wet Bulb:</b> -0.7°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 29 | <b>PM2.5:</b> 4.3<br>             </div>         </div>         </div>`)[0];
+                popup_2081aa17c7a2fc4f0ca95ef4eb02d469.setContent(html_2811c2cb58a150386f24925d01a7a392);
             
         
 
-        circle_marker_c214fb39893934185881708307a4504d.bindPopup(popup_dedfe41725180379d379f424880c072b)
+        circle_marker_4e329db847e5aa62a5a706d59cc63717.bindPopup(popup_2081aa17c7a2fc4f0ca95ef4eb02d469)
         ;
 
         
     
     
-            var circle_marker_23151accad782817de52d191be054d08 = L.circleMarker(
+            var circle_marker_7c823b5efbcddff5b47eea9b19fcbf12 = L.circleMarker(
                 [55.7558, 37.6173],
-                {"bubblingMouseEvents": true, "color": "#ff9900", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9900", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+                {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_823e7fcf996c2dd70ed2bbe25b3f45e6 = L.popup({
+        var popup_312a8bc0e6341d118a7547809dae10f6 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_40bd1c8fb092b2307df1c774e0fe5314 = $(`<div id="html_40bd1c8fb092b2307df1c774e0fe5314" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff9900; padding-bottom:5px;">Russia (Moscow)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 101<br>                 <b>🌫️ Pollutants (PM2.5):</b> 33.5 µg/m³<br>                 <b>🌡️ Temp:</b> -9.8°C<br>                 <b>💧 Humidity:</b> 87%<br>                 <b>💨 Wind:</b> 10.0 km/h             </div>         </div>         </div>`)[0];
-                popup_823e7fcf996c2dd70ed2bbe25b3f45e6.setContent(html_40bd1c8fb092b2307df1c774e0fe5314);
+                var html_f118cca4541f449316da09fc0cd31aad = $(`<div id="html_f118cca4541f449316da09fc0cd31aad" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Russia (Moscow)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> -8.9°C <br>                 <b>💧 Humidity:</b> 87% <br>                 <b>🔥 Wet Bulb:</b> -9.9°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 98 | <b>PM2.5:</b> 27.6<br>             </div>         </div>         </div>`)[0];
+                popup_312a8bc0e6341d118a7547809dae10f6.setContent(html_f118cca4541f449316da09fc0cd31aad);
             
         
 
-        circle_marker_23151accad782817de52d191be054d08.bindPopup(popup_823e7fcf996c2dd70ed2bbe25b3f45e6)
+        circle_marker_7c823b5efbcddff5b47eea9b19fcbf12.bindPopup(popup_312a8bc0e6341d118a7547809dae10f6)
         ;
 
         
     
     
-            var circle_marker_881bbb47696a7145da1cc8c35733a989 = L.circleMarker(
+            var circle_marker_00151f2e3be6230b06cbaeededb94339 = L.circleMarker(
                 [39.9042, 116.4074],
                 {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_06cae87b6a8ee744ff85d7fbb2755187 = L.popup({
+        var popup_a3a062b85f35baf78176da13d79c1084 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_610766876c30f40806ce2d39966be6ab = $(`<div id="html_610766876c30f40806ce2d39966be6ab" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000; padding-bottom:5px;">China (Beijing)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 189<br>                 <b>🌫️ Pollutants (PM2.5):</b> 197.4 µg/m³<br>                 <b>🌡️ Temp:</b> -5.0°C<br>                 <b>💧 Humidity:</b> 61%<br>                 <b>💨 Wind:</b> 2.5 km/h             </div>         </div>         </div>`)[0];
-                popup_06cae87b6a8ee744ff85d7fbb2755187.setContent(html_610766876c30f40806ce2d39966be6ab);
+                var html_97ed91be928a4f80a79609323490c379 = $(`<div id="html_97ed91be928a4f80a79609323490c379" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000;">China (Beijing)</h4>             <span style="font-size:10px; background:#ff0000; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> -6.1°C <br>                 <b>💧 Humidity:</b> 61% <br>                 <b>🔥 Wet Bulb:</b> -8.4°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 191 | <b>PM2.5:</b> 155.1<br>             </div>         </div>         </div>`)[0];
+                popup_a3a062b85f35baf78176da13d79c1084.setContent(html_97ed91be928a4f80a79609323490c379);
             
         
 
-        circle_marker_881bbb47696a7145da1cc8c35733a989.bindPopup(popup_06cae87b6a8ee744ff85d7fbb2755187)
+        circle_marker_00151f2e3be6230b06cbaeededb94339.bindPopup(popup_a3a062b85f35baf78176da13d79c1084)
         ;
 
         
     
     
-            var circle_marker_c37f10dc3b056e1575a914857ebb4efe = L.circleMarker(
+            var circle_marker_7a983838a536aad07cc10aa926ba2ae4 = L.circleMarker(
                 [35.6762, 139.6503],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+                {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_ff55ab2da0960cc9c30b8757c3a98f43 = L.popup({
+        var popup_879684705d252a8a00f5b8e2ed93b740 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_d6dc616a9b875aa7e9f01dba62f0d4fd = $(`<div id="html_d6dc616a9b875aa7e9f01dba62f0d4fd" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Japan (Tokyo)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 82<br>                 <b>🌫️ Pollutants (PM2.5):</b> 32.6 µg/m³<br>                 <b>🌡️ Temp:</b> 0.4°C<br>                 <b>💧 Humidity:</b> 61%<br>                 <b>💨 Wind:</b> 2.9 km/h             </div>         </div>         </div>`)[0];
-                popup_ff55ab2da0960cc9c30b8757c3a98f43.setContent(html_d6dc616a9b875aa7e9f01dba62f0d4fd);
+                var html_4ad2f5cc9033001157b80a638b0f2610 = $(`<div id="html_4ad2f5cc9033001157b80a638b0f2610" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Japan (Tokyo)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 0.6°C <br>                 <b>💧 Humidity:</b> 61% <br>                 <b>🔥 Wet Bulb:</b> -2.4°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 81 | <b>PM2.5:</b> 27.0<br>             </div>         </div>         </div>`)[0];
+                popup_879684705d252a8a00f5b8e2ed93b740.setContent(html_4ad2f5cc9033001157b80a638b0f2610);
             
         
 
-        circle_marker_c37f10dc3b056e1575a914857ebb4efe.bindPopup(popup_ff55ab2da0960cc9c30b8757c3a98f43)
+        circle_marker_7a983838a536aad07cc10aa926ba2ae4.bindPopup(popup_879684705d252a8a00f5b8e2ed93b740)
         ;
 
         
     
     
-            var circle_marker_e289949dd92b5b1248c0a711f80c4a2b = L.circleMarker(
+            var circle_marker_2e33b8565be7e23caf968377d25cece1 = L.circleMarker(
                 [28.6139, 77.209],
                 {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_041bc9436975c8ec274f8a9b124c46e7 = L.popup({
+        var popup_9fafbf1c10d73dbb4d5ba26b8b5d7984 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_ffc11aa3fafaf0c76182a7f5e7dd827e = $(`<div id="html_ffc11aa3fafaf0c76182a7f5e7dd827e" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000; padding-bottom:5px;">India (New Delhi)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 192<br>                 <b>🌫️ Pollutants (PM2.5):</b> 122.0 µg/m³<br>                 <b>🌡️ Temp:</b> 12.0°C<br>                 <b>💧 Humidity:</b> 95%<br>                 <b>💨 Wind:</b> 3.6 km/h             </div>         </div>         </div>`)[0];
-                popup_041bc9436975c8ec274f8a9b124c46e7.setContent(html_ffc11aa3fafaf0c76182a7f5e7dd827e);
+                var html_03438fcfd35c5e5815e1b7b92c8ec899 = $(`<div id="html_03438fcfd35c5e5815e1b7b92c8ec899" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000;">India (New Delhi)</h4>             <span style="font-size:10px; background:#ff0000; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 11.6°C <br>                 <b>💧 Humidity:</b> 95% <br>                 <b>🔥 Wet Bulb:</b> 11.0°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 185 | <b>PM2.5:</b> 119.2<br>             </div>         </div>         </div>`)[0];
+                popup_9fafbf1c10d73dbb4d5ba26b8b5d7984.setContent(html_03438fcfd35c5e5815e1b7b92c8ec899);
             
         
 
-        circle_marker_e289949dd92b5b1248c0a711f80c4a2b.bindPopup(popup_041bc9436975c8ec274f8a9b124c46e7)
+        circle_marker_2e33b8565be7e23caf968377d25cece1.bindPopup(popup_9fafbf1c10d73dbb4d5ba26b8b5d7984)
         ;
 
         
     
     
-            var circle_marker_4e7bdbff2b7d9d15420cc0ecd2d434e0 = L.circleMarker(
+            var circle_marker_8edfa15049d67d2a62bccb9865ddcdc8 = L.circleMarker(
                 [-15.8267, -47.9218],
                 {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_b683743ee968f0455902722e87947923 = L.popup({
+        var popup_e1dd25fe0d9bfd5afc3363fd7b836a05 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_e353d89001590f3137b19881a7cac05f = $(`<div id="html_e353d89001590f3137b19881a7cac05f" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">Brazil (Brasilia)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 47<br>                 <b>🌫️ Pollutants (PM2.5):</b> 5.1 µg/m³<br>                 <b>🌡️ Temp:</b> 27.8°C<br>                 <b>💧 Humidity:</b> 79%<br>                 <b>💨 Wind:</b> 11.0 km/h             </div>         </div>         </div>`)[0];
-                popup_b683743ee968f0455902722e87947923.setContent(html_e353d89001590f3137b19881a7cac05f);
+                var html_9b98ce00deb10cdefbd22ae6f13ef1de = $(`<div id="html_9b98ce00deb10cdefbd22ae6f13ef1de" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Brazil (Brasilia)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 27.6°C <br>                 <b>💧 Humidity:</b> 79% <br>                 <b>🔥 Wet Bulb:</b> 24.7°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 68 | <b>PM2.5:</b> 3.8<br>             </div>         </div>         </div>`)[0];
+                popup_e1dd25fe0d9bfd5afc3363fd7b836a05.setContent(html_9b98ce00deb10cdefbd22ae6f13ef1de);
             
         
 
-        circle_marker_4e7bdbff2b7d9d15420cc0ecd2d434e0.bindPopup(popup_b683743ee968f0455902722e87947923)
+        circle_marker_8edfa15049d67d2a62bccb9865ddcdc8.bindPopup(popup_e1dd25fe0d9bfd5afc3363fd7b836a05)
         ;
 
         
     
     
-            var circle_marker_c9bdc9111f8f6be48c824e215d75e10f = L.circleMarker(
+            var circle_marker_bac00c064dfc6340caa4213f592caaa0 = L.circleMarker(
                 [-25.7479, 28.2293],
                 {"bubblingMouseEvents": true, "color": "#ff9900", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9900", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_75b764d419bafbbe0cb16ee9cfca7501 = L.popup({
+        var popup_d0006e34c9c8cee1bc73c182f42d46b4 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_7f7710947efab174a7ecfea50adb2163 = $(`<div id="html_7f7710947efab174a7ecfea50adb2163" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff9900; padding-bottom:5px;">South Africa (Pretoria)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 147<br>                 <b>🌫️ Pollutants (PM2.5):</b> 10.3 µg/m³<br>                 <b>🌡️ Temp:</b> 27.4°C<br>                 <b>💧 Humidity:</b> 85%<br>                 <b>💨 Wind:</b> 9.0 km/h             </div>         </div>         </div>`)[0];
-                popup_75b764d419bafbbe0cb16ee9cfca7501.setContent(html_7f7710947efab174a7ecfea50adb2163);
+                var html_24ba3dca3fb0081fa9fc520e160ef16f = $(`<div id="html_24ba3dca3fb0081fa9fc520e160ef16f" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff9900;">South Africa (Pretoria)</h4>             <span style="font-size:10px; background:#ff9900; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 25.7°C <br>                 <b>💧 Humidity:</b> 85% <br>                 <b>🔥 Wet Bulb:</b> 23.7°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 128 | <b>PM2.5:</b> 15.1<br>             </div>         </div>         </div>`)[0];
+                popup_d0006e34c9c8cee1bc73c182f42d46b4.setContent(html_24ba3dca3fb0081fa9fc520e160ef16f);
             
         
 
-        circle_marker_c9bdc9111f8f6be48c824e215d75e10f.bindPopup(popup_75b764d419bafbbe0cb16ee9cfca7501)
+        circle_marker_bac00c064dfc6340caa4213f592caaa0.bindPopup(popup_d0006e34c9c8cee1bc73c182f42d46b4)
         ;
 
         
     
     
-            var circle_marker_432544947379bbbf22270d649f9c30c2 = L.circleMarker(
+            var circle_marker_4d671fceaac4e8fce38dd79dfed944e3 = L.circleMarker(
                 [-35.2809, 149.13],
                 {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_50eaac7c4a53e39921d605b73dd2ff42 = L.popup({
+        var popup_87bb16d25d97d1bf131f087606a5cdd2 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_55cddffdff73207240e5e70e6e50d3cf = $(`<div id="html_55cddffdff73207240e5e70e6e50d3cf" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">Australia (Canberra)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 19<br>                 <b>🌫️ Pollutants (PM2.5):</b> 4.6 µg/m³<br>                 <b>🌡️ Temp:</b> 12.9°C<br>                 <b>💧 Humidity:</b> 50%<br>                 <b>💨 Wind:</b> 5.4 km/h             </div>         </div>         </div>`)[0];
-                popup_50eaac7c4a53e39921d605b73dd2ff42.setContent(html_55cddffdff73207240e5e70e6e50d3cf);
+                var html_5ff03c146516c5dca94803aab878a5dd = $(`<div id="html_5ff03c146516c5dca94803aab878a5dd" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Australia (Canberra)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 12.6°C <br>                 <b>💧 Humidity:</b> 50% <br>                 <b>🔥 Wet Bulb:</b> 7.3°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 19 | <b>PM2.5:</b> 5.2<br>             </div>         </div>         </div>`)[0];
+                popup_87bb16d25d97d1bf131f087606a5cdd2.setContent(html_5ff03c146516c5dca94803aab878a5dd);
             
         
 
-        circle_marker_432544947379bbbf22270d649f9c30c2.bindPopup(popup_50eaac7c4a53e39921d605b73dd2ff42)
+        circle_marker_4d671fceaac4e8fce38dd79dfed944e3.bindPopup(popup_87bb16d25d97d1bf131f087606a5cdd2)
         ;
 
         
     
     
-            var circle_marker_b88ee1c2a854d9d3042cada3346c6c24 = L.circleMarker(
+            var circle_marker_a57794d92862a40098f49ed536ad0a75 = L.circleMarker(
                 [45.4215, -75.6972],
                 {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_47e4dca016b65ed763e21c584e44d2a8 = L.popup({
+        var popup_3cc4fb12752ae72205bccd86113eb488 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_a20257db0c35ad83eecaa6b88f48b910 = $(`<div id="html_a20257db0c35ad83eecaa6b88f48b910" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">Canada (Ottawa)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 33<br>                 <b>🌫️ Pollutants (PM2.5):</b> 12.3 µg/m³<br>                 <b>🌡️ Temp:</b> -15.2°C<br>                 <b>💧 Humidity:</b> 38%<br>                 <b>💨 Wind:</b> 2.5 km/h             </div>         </div>         </div>`)[0];
-                popup_47e4dca016b65ed763e21c584e44d2a8.setContent(html_a20257db0c35ad83eecaa6b88f48b910);
+                var html_902be4fb9bf8207fe92b122e3cf2a5fd = $(`<div id="html_902be4fb9bf8207fe92b122e3cf2a5fd" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Canada (Ottawa)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> -11.9°C <br>                 <b>💧 Humidity:</b> 38% <br>                 <b>🔥 Wet Bulb:</b> -13.6°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 36 | <b>PM2.5:</b> 7.0<br>             </div>         </div>         </div>`)[0];
+                popup_3cc4fb12752ae72205bccd86113eb488.setContent(html_902be4fb9bf8207fe92b122e3cf2a5fd);
             
         
 
-        circle_marker_b88ee1c2a854d9d3042cada3346c6c24.bindPopup(popup_47e4dca016b65ed763e21c584e44d2a8)
+        circle_marker_a57794d92862a40098f49ed536ad0a75.bindPopup(popup_3cc4fb12752ae72205bccd86113eb488)
         ;
 
         
     
     
-            var circle_marker_2d3123b14657bdb7265881d75d4bf5a5 = L.circleMarker(
+            var circle_marker_564023f5b1325f6642351d63c74544e7 = L.circleMarker(
                 [19.4326, -99.1332],
                 {"bubblingMouseEvents": true, "color": "#ff9900", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9900", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_56e4102fce434e2490521b1e7cb2c0d1 = L.popup({
+        var popup_d3b2b08cb3aa177f8ae6022e60c044c8 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_18a4d8ca8bbd2104371080cdd8013d55 = $(`<div id="html_18a4d8ca8bbd2104371080cdd8013d55" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff9900; padding-bottom:5px;">Mexico (Mexico City)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 105<br>                 <b>🌫️ Pollutants (PM2.5):</b> 21.9 µg/m³<br>                 <b>🌡️ Temp:</b> 15.7°C<br>                 <b>💧 Humidity:</b> 35%<br>                 <b>💨 Wind:</b> 5.2 km/h             </div>         </div>         </div>`)[0];
-                popup_56e4102fce434e2490521b1e7cb2c0d1.setContent(html_18a4d8ca8bbd2104371080cdd8013d55);
+                var html_afb422f33e10c1edc84942bca715b9d7 = $(`<div id="html_afb422f33e10c1edc84942bca715b9d7" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff9900;">Mexico (Mexico City)</h4>             <span style="font-size:10px; background:#ff9900; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 18.1°C <br>                 <b>💧 Humidity:</b> 35% <br>                 <b>🔥 Wet Bulb:</b> 10.1°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 104 | <b>PM2.5:</b> 13.5<br>             </div>         </div>         </div>`)[0];
+                popup_d3b2b08cb3aa177f8ae6022e60c044c8.setContent(html_afb422f33e10c1edc84942bca715b9d7);
             
         
 
-        circle_marker_2d3123b14657bdb7265881d75d4bf5a5.bindPopup(popup_56e4102fce434e2490521b1e7cb2c0d1)
+        circle_marker_564023f5b1325f6642351d63c74544e7.bindPopup(popup_d3b2b08cb3aa177f8ae6022e60c044c8)
         ;
 
         
     
     
-            var circle_marker_356e81a07e18ee787f3fbe935d97d8bc = L.circleMarker(
+            var circle_marker_e5b04c6919288d2bffa7242e167a119c = L.circleMarker(
                 [-34.6037, -58.3816],
                 {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_93cb5410dcc90e5892be6e7ed75d88bc = L.popup({
+        var popup_97ea669b4c8e9422c330aaa57695bb68 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_8d4a64f3fb5dc7fd1f69b9b191a18066 = $(`<div id="html_8d4a64f3fb5dc7fd1f69b9b191a18066" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">Argentina (Buenos Aires)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 29<br>                 <b>🌫️ Pollutants (PM2.5):</b> 4.5 µg/m³<br>                 <b>🌡️ Temp:</b> 27.2°C<br>                 <b>💧 Humidity:</b> 62%<br>                 <b>💨 Wind:</b> 6.5 km/h             </div>         </div>         </div>`)[0];
-                popup_93cb5410dcc90e5892be6e7ed75d88bc.setContent(html_8d4a64f3fb5dc7fd1f69b9b191a18066);
+                var html_a6015fd5d92f7e6ca4be1d01ca711469 = $(`<div id="html_a6015fd5d92f7e6ca4be1d01ca711469" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Argentina (Buenos Aires)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 28.3°C <br>                 <b>💧 Humidity:</b> 62% <br>                 <b>🔥 Wet Bulb:</b> 22.8°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 27 | <b>PM2.5:</b> 4.8<br>             </div>         </div>         </div>`)[0];
+                popup_97ea669b4c8e9422c330aaa57695bb68.setContent(html_a6015fd5d92f7e6ca4be1d01ca711469);
             
         
 
-        circle_marker_356e81a07e18ee787f3fbe935d97d8bc.bindPopup(popup_93cb5410dcc90e5892be6e7ed75d88bc)
+        circle_marker_e5b04c6919288d2bffa7242e167a119c.bindPopup(popup_97ea669b4c8e9422c330aaa57695bb68)
         ;
 
         
     
     
-            var circle_marker_e346fa32fdc721dcdaebb9daf1876816 = L.circleMarker(
+            var circle_marker_b1073ffb5d1e8616c97157108adef35f = L.circleMarker(
                 [30.0444, 31.2357],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+                {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_4e87c802db4dff51a4aff199eecdf590 = L.popup({
+        var popup_bd12886c9df4f734d278f79200484b15 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_dfb7f7750b29276a9f3792e51242718b = $(`<div id="html_dfb7f7750b29276a9f3792e51242718b" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Egypt (Cairo)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 91<br>                 <b>🌫️ Pollutants (PM2.5):</b> 17.3 µg/m³<br>                 <b>🌡️ Temp:</b> 14.9°C<br>                 <b>💧 Humidity:</b> 77%<br>                 <b>💨 Wind:</b> 6.6 km/h             </div>         </div>         </div>`)[0];
-                popup_4e87c802db4dff51a4aff199eecdf590.setContent(html_dfb7f7750b29276a9f3792e51242718b);
+                var html_44097932d021cb0facb8c6d3ab0d997e = $(`<div id="html_44097932d021cb0facb8c6d3ab0d997e" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Egypt (Cairo)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 13.9°C <br>                 <b>💧 Humidity:</b> 77% <br>                 <b>🔥 Wet Bulb:</b> 11.3°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 90 | <b>PM2.5:</b> 27.3<br>             </div>         </div>         </div>`)[0];
+                popup_bd12886c9df4f734d278f79200484b15.setContent(html_44097932d021cb0facb8c6d3ab0d997e);
             
         
 
-        circle_marker_e346fa32fdc721dcdaebb9daf1876816.bindPopup(popup_4e87c802db4dff51a4aff199eecdf590)
+        circle_marker_b1073ffb5d1e8616c97157108adef35f.bindPopup(popup_bd12886c9df4f734d278f79200484b15)
         ;
 
         
     
     
-            var circle_marker_856cd164cd53e6357a4db6bf180cc671 = L.circleMarker(
+            var circle_marker_0eeb4405bd7ba545b0de2276c475cfd0 = L.circleMarker(
                 [9.0765, 7.3986],
                 {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_17d7056aac23d2a78e8c1b84a379fc54 = L.popup({
+        var popup_43c708089ea91c8f0a6fd2f28e4b9743 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_d14386c66bfcd45dd823e2ac22d6aed2 = $(`<div id="html_d14386c66bfcd45dd823e2ac22d6aed2" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000; padding-bottom:5px;">Nigeria (Abuja)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 151<br>                 <b>🌫️ Pollutants (PM2.5):</b> 29.6 µg/m³<br>                 <b>🌡️ Temp:</b> 34.5°C<br>                 <b>💧 Humidity:</b> 59%<br>                 <b>💨 Wind:</b> 9.4 km/h             </div>         </div>         </div>`)[0];
-                popup_17d7056aac23d2a78e8c1b84a379fc54.setContent(html_d14386c66bfcd45dd823e2ac22d6aed2);
+                var html_bd7f1412fa118db44725eb4bd976eed7 = $(`<div id="html_bd7f1412fa118db44725eb4bd976eed7" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000;">Nigeria (Abuja)</h4>             <span style="font-size:10px; background:#ff0000; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 30.9°C <br>                 <b>💧 Humidity:</b> 59% <br>                 <b>🔥 Wet Bulb:</b> 24.6°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 151 | <b>PM2.5:</b> 37.6<br>             </div>         </div>         </div>`)[0];
+                popup_43c708089ea91c8f0a6fd2f28e4b9743.setContent(html_bd7f1412fa118db44725eb4bd976eed7);
             
         
 
-        circle_marker_856cd164cd53e6357a4db6bf180cc671.bindPopup(popup_17d7056aac23d2a78e8c1b84a379fc54)
+        circle_marker_0eeb4405bd7ba545b0de2276c475cfd0.bindPopup(popup_43c708089ea91c8f0a6fd2f28e4b9743)
         ;
 
         
     
     
-            var circle_marker_daecc38fe0a61f4e50aa0808a208d5b0 = L.circleMarker(
-                [-1.2921, 36.8219],
-                {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_9645c3efbf0b5e6dfdfaa2896dd47cc7 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_cad2e359d7e5e2dc911ac5b0165f6280 = $(`<div id="html_cad2e359d7e5e2dc911ac5b0165f6280" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">Kenya (Nairobi)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 46<br>                 <b>🌫️ Pollutants (PM2.5):</b> 9.9 µg/m³<br>                 <b>🌡️ Temp:</b> 20.1°C<br>                 <b>💧 Humidity:</b> 83%<br>                 <b>💨 Wind:</b> 12.1 km/h             </div>         </div>         </div>`)[0];
-                popup_9645c3efbf0b5e6dfdfaa2896dd47cc7.setContent(html_cad2e359d7e5e2dc911ac5b0165f6280);
-            
-        
-
-        circle_marker_daecc38fe0a61f4e50aa0808a208d5b0.bindPopup(popup_9645c3efbf0b5e6dfdfaa2896dd47cc7)
-        ;
-
-        
-    
-    
-            var circle_marker_b700e66773cb8a22f6abdde90e1d8b3d = L.circleMarker(
-                [24.7136, 46.6753],
-                {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_f631dd5e4255568d7869e8c975c51f06 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_15dd3accd3de49a03b0d903b042311c4 = $(`<div id="html_15dd3accd3de49a03b0d903b042311c4" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000; padding-bottom:5px;">Saudi Arabia (Riyadh)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 471<br>                 <b>🌫️ Pollutants (PM2.5):</b> 74.7 µg/m³<br>                 <b>🌡️ Temp:</b> 18.6°C<br>                 <b>💧 Humidity:</b> 45%<br>                 <b>💨 Wind:</b> 4.1 km/h             </div>         </div>         </div>`)[0];
-                popup_f631dd5e4255568d7869e8c975c51f06.setContent(html_15dd3accd3de49a03b0d903b042311c4);
-            
-        
-
-        circle_marker_b700e66773cb8a22f6abdde90e1d8b3d.bindPopup(popup_f631dd5e4255568d7869e8c975c51f06)
-        ;
-
-        
-    
-    
-            var circle_marker_1e52631a88af6fd0396a5ad574a35981 = L.circleMarker(
+            var circle_marker_cbe1e721a559057e91aa0f655ab8ba1b = L.circleMarker(
                 [-6.2088, 106.8456],
                 {"bubblingMouseEvents": true, "color": "#ff9900", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9900", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_71e666dbfbd9357b0b28a23079d4568c = L.popup({
+        var popup_7f798cfb489e6d6fb1f60d17ed07f984 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_e13474bbb6516621550e1662f2e49a7e = $(`<div id="html_e13474bbb6516621550e1662f2e49a7e" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff9900; padding-bottom:5px;">Indonesia (Jakarta)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 130<br>                 <b>🌫️ Pollutants (PM2.5):</b> 66.1 µg/m³<br>                 <b>🌡️ Temp:</b> 24.2°C<br>                 <b>💧 Humidity:</b> 92%<br>                 <b>💨 Wind:</b> 1.9 km/h             </div>         </div>         </div>`)[0];
-                popup_71e666dbfbd9357b0b28a23079d4568c.setContent(html_e13474bbb6516621550e1662f2e49a7e);
+                var html_06a49cc19eddf30f1f802ed16c8f8bdc = $(`<div id="html_06a49cc19eddf30f1f802ed16c8f8bdc" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff9900;">Indonesia (Jakarta)</h4>             <span style="font-size:10px; background:#ff9900; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 24.2°C <br>                 <b>💧 Humidity:</b> 92% <br>                 <b>🔥 Wet Bulb:</b> 23.2°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 127 | <b>PM2.5:</b> 44.2<br>             </div>         </div>         </div>`)[0];
+                popup_7f798cfb489e6d6fb1f60d17ed07f984.setContent(html_06a49cc19eddf30f1f802ed16c8f8bdc);
             
         
 
-        circle_marker_1e52631a88af6fd0396a5ad574a35981.bindPopup(popup_71e666dbfbd9357b0b28a23079d4568c)
+        circle_marker_cbe1e721a559057e91aa0f655ab8ba1b.bindPopup(popup_7f798cfb489e6d6fb1f60d17ed07f984)
         ;
 
         
     
     
-            var circle_marker_c7b2d5960af55ebe31f43a19bb782760 = L.circleMarker(
+            var circle_marker_c61bd3c082ee4d1eb413a0e76c5b76bb = L.circleMarker(
                 [13.7563, 100.5018],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+                {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_d7d536f427bb7f266477d1bf028eaaec = L.popup({
+        var popup_dc1b34eec5b67faa74df43e3378af5b3 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_fe4e4dbbec3a49cb280e6b079fc2a36d = $(`<div id="html_fe4e4dbbec3a49cb280e6b079fc2a36d" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Thailand (Bangkok)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 90<br>                 <b>🌫️ Pollutants (PM2.5):</b> 27.8 µg/m³<br>                 <b>🌡️ Temp:</b> 23.8°C<br>                 <b>💧 Humidity:</b> 79%<br>                 <b>💨 Wind:</b> 5.0 km/h             </div>         </div>         </div>`)[0];
-                popup_d7d536f427bb7f266477d1bf028eaaec.setContent(html_fe4e4dbbec3a49cb280e6b079fc2a36d);
+                var html_ab8a219ae551005a7611eee119c023cf = $(`<div id="html_ab8a219ae551005a7611eee119c023cf" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Thailand (Bangkok)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 23.4°C <br>                 <b>💧 Humidity:</b> 79% <br>                 <b>🔥 Wet Bulb:</b> 20.7°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 84 | <b>PM2.5:</b> 24.8<br>             </div>         </div>         </div>`)[0];
+                popup_dc1b34eec5b67faa74df43e3378af5b3.setContent(html_ab8a219ae551005a7611eee119c023cf);
             
         
 
-        circle_marker_c7b2d5960af55ebe31f43a19bb782760.bindPopup(popup_d7d536f427bb7f266477d1bf028eaaec)
+        circle_marker_c61bd3c082ee4d1eb413a0e76c5b76bb.bindPopup(popup_dc1b34eec5b67faa74df43e3378af5b3)
         ;
 
         
     
     
-            var circle_marker_98bc2549612bca84a978880043db14c7 = L.circleMarker(
-                [37.5665, 126.978],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            var circle_marker_dd6d74beb2341049106829dfbf3fa48c = L.circleMarker(
+                [24.7136, 46.6753],
+                {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_38271e8cf3b9467173c8efdc83d30883 = L.popup({
+        var popup_67da9c3a33a2a65b888719d0eb3aa22b = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_494dc41af09a56668b2208cdb41a30fb = $(`<div id="html_494dc41af09a56668b2208cdb41a30fb" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">South Korea (Seoul)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 57<br>                 <b>🌫️ Pollutants (PM2.5):</b> 12.3 µg/m³<br>                 <b>🌡️ Temp:</b> -8.1°C<br>                 <b>💧 Humidity:</b> 50%<br>                 <b>💨 Wind:</b> 5.8 km/h             </div>         </div>         </div>`)[0];
-                popup_38271e8cf3b9467173c8efdc83d30883.setContent(html_494dc41af09a56668b2208cdb41a30fb);
+                var html_cc1076c786d8d0bdeb6058540ba4cbf2 = $(`<div id="html_cc1076c786d8d0bdeb6058540ba4cbf2" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000;">Saudi Arabia (Riyadh)</h4>             <span style="font-size:10px; background:#ff0000; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 18.1°C <br>                 <b>💧 Humidity:</b> 45% <br>                 <b>🔥 Wet Bulb:</b> 11.4°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 426 | <b>PM2.5:</b> 63.1<br>             </div>         </div>         </div>`)[0];
+                popup_67da9c3a33a2a65b888719d0eb3aa22b.setContent(html_cc1076c786d8d0bdeb6058540ba4cbf2);
             
         
 
-        circle_marker_98bc2549612bca84a978880043db14c7.bindPopup(popup_38271e8cf3b9467173c8efdc83d30883)
+        circle_marker_dd6d74beb2341049106829dfbf3fa48c.bindPopup(popup_67da9c3a33a2a65b888719d0eb3aa22b)
         ;
 
         
     
     
-            var circle_marker_0ac160a47312217865baf7ba0189f7a9 = L.circleMarker(
+            var circle_marker_eb6a1c7f0f45e47bee1b0248cfa8bbfb = L.circleMarker(
                 [41.9028, 12.4964],
                 {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_7ff9b341a542b4070941aa749e1d5cad = L.popup({
+        var popup_9ca2358ba04ce31736eed63e0a3da3ac = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_ff4435b140590bc5ab937364c2bcb9c1 = $(`<div id="html_ff4435b140590bc5ab937364c2bcb9c1" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">Italy (Rome)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 40<br>                 <b>🌫️ Pollutants (PM2.5):</b> 7.1 µg/m³<br>                 <b>🌡️ Temp:</b> 11.4°C<br>                 <b>💧 Humidity:</b> 82%<br>                 <b>💨 Wind:</b> 7.6 km/h             </div>         </div>         </div>`)[0];
-                popup_7ff9b341a542b4070941aa749e1d5cad.setContent(html_ff4435b140590bc5ab937364c2bcb9c1);
+                var html_2d4953e4842ca1114bad20824b0b51aa = $(`<div id="html_2d4953e4842ca1114bad20824b0b51aa" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Italy (Rome)</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 11.1°C <br>                 <b>💧 Humidity:</b> 82% <br>                 <b>🔥 Wet Bulb:</b> 9.2°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 39 | <b>PM2.5:</b> 12.4<br>             </div>         </div>         </div>`)[0];
+                popup_9ca2358ba04ce31736eed63e0a3da3ac.setContent(html_2d4953e4842ca1114bad20824b0b51aa);
             
         
 
-        circle_marker_0ac160a47312217865baf7ba0189f7a9.bindPopup(popup_7ff9b341a542b4070941aa749e1d5cad)
+        circle_marker_eb6a1c7f0f45e47bee1b0248cfa8bbfb.bindPopup(popup_9ca2358ba04ce31736eed63e0a3da3ac)
         ;
 
         
     
     
-            var circle_marker_ee8b866144a420dd8efb423ed72be21d = L.circleMarker(
-                [40.4168, -3.7038],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_19852e18447324f28e1892685d278903 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_a5f332038fa798fd28795d96e946c497 = $(`<div id="html_a5f332038fa798fd28795d96e946c497" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Spain (Madrid)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 73<br>                 <b>🌫️ Pollutants (PM2.5):</b> 13.4 µg/m³<br>                 <b>🌡️ Temp:</b> 9.1°C<br>                 <b>💧 Humidity:</b> 87%<br>                 <b>💨 Wind:</b> 4.7 km/h             </div>         </div>         </div>`)[0];
-                popup_19852e18447324f28e1892685d278903.setContent(html_a5f332038fa798fd28795d96e946c497);
-            
-        
-
-        circle_marker_ee8b866144a420dd8efb423ed72be21d.bindPopup(popup_19852e18447324f28e1892685d278903)
-        ;
-
-        
-    
-    
-            var circle_marker_0467ac82e51a40b396d151f10c9596f5 = L.circleMarker(
-                [59.3293, 18.0686],
+            var circle_marker_6941bbaf29b44606e37744af795c7e7b = L.circleMarker(
+                [1.3521, 103.8198],
                 {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_e7f5bdd9d49c37eee110eaf22c5c5c75 = L.popup({
+        var popup_c8b17d42b0a5f961b84f6b198f7c4329 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_d9273ebbc46f1be9912be56d2eb80fcc = $(`<div id="html_d9273ebbc46f1be9912be56d2eb80fcc" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">Sweden (Stockholm)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 22<br>                 <b>🌫️ Pollutants (PM2.5):</b> 2.6 µg/m³<br>                 <b>🌡️ Temp:</b> -1.4°C<br>                 <b>💧 Humidity:</b> 97%<br>                 <b>💨 Wind:</b> 21.2 km/h             </div>         </div>         </div>`)[0];
-                popup_e7f5bdd9d49c37eee110eaf22c5c5c75.setContent(html_d9273ebbc46f1be9912be56d2eb80fcc);
+                var html_989f3ccda2832c381f3f84147140d7e2 = $(`<div id="html_989f3ccda2832c381f3f84147140d7e2" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00;">Singapore</h4>             <span style="font-size:10px; background:#00ff00; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 24.6°C <br>                 <b>💧 Humidity:</b> 89% <br>                 <b>🔥 Wet Bulb:</b> 23.2°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 61 | <b>PM2.5:</b> 11.9<br>             </div>         </div>         </div>`)[0];
+                popup_c8b17d42b0a5f961b84f6b198f7c4329.setContent(html_989f3ccda2832c381f3f84147140d7e2);
             
         
 
-        circle_marker_0467ac82e51a40b396d151f10c9596f5.bindPopup(popup_e7f5bdd9d49c37eee110eaf22c5c5c75)
+        circle_marker_6941bbaf29b44606e37744af795c7e7b.bindPopup(popup_c8b17d42b0a5f961b84f6b198f7c4329)
         ;
 
         
     
     
-            var circle_marker_2cf44ecf38fb2730cdd9bd3ebf7383f4 = L.circleMarker(
-                [59.9139, 10.7522],
-                {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_8b2515a28011b49c0b5170b53a9fd92b = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_a654a18ad5ba60556ec56a39cede3b6f = $(`<div id="html_a654a18ad5ba60556ec56a39cede3b6f" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">Norway (Oslo)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 29<br>                 <b>🌫️ Pollutants (PM2.5):</b> 3.2 µg/m³<br>                 <b>🌡️ Temp:</b> -5.1°C<br>                 <b>💧 Humidity:</b> 67%<br>                 <b>💨 Wind:</b> 21.2 km/h             </div>         </div>         </div>`)[0];
-                popup_8b2515a28011b49c0b5170b53a9fd92b.setContent(html_a654a18ad5ba60556ec56a39cede3b6f);
-            
-        
-
-        circle_marker_2cf44ecf38fb2730cdd9bd3ebf7383f4.bindPopup(popup_8b2515a28011b49c0b5170b53a9fd92b)
-        ;
-
-        
-    
-    
-            var circle_marker_1b3aa70429e39491395fbcff14976301 = L.circleMarker(
-                [52.2297, 21.0122],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_2b75c2d54a12c4f6f9c7614e1d1406c8 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_f70eb0ee1fa51a67a8fff596553989d0 = $(`<div id="html_f70eb0ee1fa51a67a8fff596553989d0" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Poland (Warsaw)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 51<br>                 <b>🌫️ Pollutants (PM2.5):</b> 15.1 µg/m³<br>                 <b>🌡️ Temp:</b> 1.9°C<br>                 <b>💧 Humidity:</b> 76%<br>                 <b>💨 Wind:</b> 23.8 km/h             </div>         </div>         </div>`)[0];
-                popup_2b75c2d54a12c4f6f9c7614e1d1406c8.setContent(html_f70eb0ee1fa51a67a8fff596553989d0);
-            
-        
-
-        circle_marker_1b3aa70429e39491395fbcff14976301.bindPopup(popup_2b75c2d54a12c4f6f9c7614e1d1406c8)
-        ;
-
-        
-    
-    
-            var circle_marker_61e6e51fe2e71123f72e11ac81a45592 = L.circleMarker(
-                [37.9838, 23.7275],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_4c0810d148c5d06dc0ed738ee9535f7f = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_658a61aa55435445eb86bd28aa14713c = $(`<div id="html_658a61aa55435445eb86bd28aa14713c" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Greece (Athens)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 64<br>                 <b>🌫️ Pollutants (PM2.5):</b> 11.2 µg/m³<br>                 <b>🌡️ Temp:</b> 6.8°C<br>                 <b>💧 Humidity:</b> 53%<br>                 <b>💨 Wind:</b> 3.1 km/h             </div>         </div>         </div>`)[0];
-                popup_4c0810d148c5d06dc0ed738ee9535f7f.setContent(html_658a61aa55435445eb86bd28aa14713c);
-            
-        
-
-        circle_marker_61e6e51fe2e71123f72e11ac81a45592.bindPopup(popup_4c0810d148c5d06dc0ed738ee9535f7f)
-        ;
-
-        
-    
-    
-            var circle_marker_bab70d079bcdcbc8f20f60b5c6c4aee2 = L.circleMarker(
-                [35.6892, 51.389],
-                {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_4a66bedfecffc78725ace5390a3aba1c = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_a69a3fa7b6866095ede81a30add462f1 = $(`<div id="html_a69a3fa7b6866095ede81a30add462f1" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000; padding-bottom:5px;">Iran (Tehran)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 152<br>                 <b>🌫️ Pollutants (PM2.5):</b> 86.6 µg/m³<br>                 <b>🌡️ Temp:</b> 5.6°C<br>                 <b>💧 Humidity:</b> 35%<br>                 <b>💨 Wind:</b> 2.5 km/h             </div>         </div>         </div>`)[0];
-                popup_4a66bedfecffc78725ace5390a3aba1c.setContent(html_a69a3fa7b6866095ede81a30add462f1);
-            
-        
-
-        circle_marker_bab70d079bcdcbc8f20f60b5c6c4aee2.bindPopup(popup_4a66bedfecffc78725ace5390a3aba1c)
-        ;
-
-        
-    
-    
-            var circle_marker_72df45e3c4a8c3c3cb4fc790485273b6 = L.circleMarker(
+            var circle_marker_2835539fdec7b21ea82c7ae9a04eeddd = L.circleMarker(
                 [33.6844, 73.0479],
                 {"bubblingMouseEvents": true, "color": "#ff0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            ).addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
     
-        var popup_70271679241775fabf8911ad039f4bc2 = L.popup({
+        var popup_49ea9a53dfb1d27e3271fd8e4e015b5b = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_44158f7c5306000c1e1ad1b25264697d = $(`<div id="html_44158f7c5306000c1e1ad1b25264697d" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000; padding-bottom:5px;">Pakistan (Islamabad)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 155<br>                 <b>🌫️ Pollutants (PM2.5):</b> 100.6 µg/m³<br>                 <b>🌡️ Temp:</b> 9.3°C<br>                 <b>💧 Humidity:</b> 100%<br>                 <b>💨 Wind:</b> 2.9 km/h             </div>         </div>         </div>`)[0];
-                popup_70271679241775fabf8911ad039f4bc2.setContent(html_44158f7c5306000c1e1ad1b25264697d);
+                var html_691879c6e1b867cdc3663fe77a75656b = $(`<div id="html_691879c6e1b867cdc3663fe77a75656b" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:220px;">             <h4 style="margin:0; border-bottom:2px solid #ff0000;">Pakistan (Islamabad)</h4>             <span style="font-size:10px; background:#ff0000; color:black; padding:1px 4px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:11px; line-height:1.4;">                 <b>🌡️ Temp:</b> 8.1°C <br>                 <b>💧 Humidity:</b> 100% <br>                 <b>🔥 Wet Bulb:</b> 8.0°C <br>                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">                 <b>🏭 AQI:</b> 153 | <b>PM2.5:</b> 102.7<br>             </div>         </div>         </div>`)[0];
+                popup_49ea9a53dfb1d27e3271fd8e4e015b5b.setContent(html_691879c6e1b867cdc3663fe77a75656b);
             
         
 
-        circle_marker_72df45e3c4a8c3c3cb4fc790485273b6.bindPopup(popup_70271679241775fabf8911ad039f4bc2)
+        circle_marker_2835539fdec7b21ea82c7ae9a04eeddd.bindPopup(popup_49ea9a53dfb1d27e3271fd8e4e015b5b)
         ;
 
         
     
     
-            var circle_marker_1527fef3763557a121a8224f2755ff1a = L.circleMarker(
-                [21.0285, 105.8542],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
+            var heat_map_7b8ed6b82a2553b3d920cd9fb09a62b2 = L.heatLayer(
+                [[15.5007, 32.5599, 0.5379999999999999], [32.293, 36.328, 0.142], [21.4272, 92.0058, 0.35], [34.5553, 69.2075, 0.036000000000000004], [0.0514, 40.304, 0.632], [50.4501, 30.5234, -0.012], [12.1348, 15.0557, 0.58], [15.3694, 44.191, 0.252], [41.0082, 28.9784, 0.158], [9.0331, 38.7444, 0.278], [18.5944, -72.3074, 0.5720000000000001], [38.9072, -77.0369, 0.02], [51.5074, -0.1278, 0.048], [48.8566, 2.3522, 0.046], [52.52, 13.405, 0.03], [55.7558, 37.6173, -0.17800000000000002], [39.9042, 116.4074, -0.122], [35.6762, 139.6503, 0.012], [28.6139, 77.209, 0.23199999999999998], [-15.8267, -47.9218, 0.552], [-25.7479, 28.2293, 0.514], [-35.2809, 149.13, 0.252], [45.4215, -75.6972, -0.23800000000000002], [19.4326, -99.1332, 0.36200000000000004], [-34.6037, -58.3816, 0.5660000000000001], [30.0444, 31.2357, 0.278], [9.0765, 7.3986, 0.618], [-6.2088, 106.8456, 0.484], [13.7563, 100.5018, 0.46799999999999997], [24.7136, 46.6753, 0.36200000000000004], [41.9028, 12.4964, 0.222], [1.3521, 103.8198, 0.49200000000000005], [33.6844, 73.0479, 0.162]],
+                {
+  "minOpacity": 0.5,
+  "maxZoom": 1,
+  "radius": 15,
+  "blur": 10,
+}
+            );
         
     
-        var popup_c05ae1dfed1058761b039293c34f65ba = L.popup({
-  "maxWidth": 250,
-});
-
+            heat_map_7b8ed6b82a2553b3d920cd9fb09a62b2.addTo(map_fd55ed70e28c93695eec6309e72be65e);
         
-            
-                var html_34e5a51eee8f03d08a30840531242de4 = $(`<div id="html_34e5a51eee8f03d08a30840531242de4" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Vietnam (Hanoi)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 68<br>                 <b>🌫️ Pollutants (PM2.5):</b> 24.2 µg/m³<br>                 <b>🌡️ Temp:</b> 13.9°C<br>                 <b>💧 Humidity:</b> 75%<br>                 <b>💨 Wind:</b> 3.7 km/h             </div>         </div>         </div>`)[0];
-                popup_c05ae1dfed1058761b039293c34f65ba.setContent(html_34e5a51eee8f03d08a30840531242de4);
-            
-        
-
-        circle_marker_1527fef3763557a121a8224f2755ff1a.bindPopup(popup_c05ae1dfed1058761b039293c34f65ba)
-        ;
-
-        
-    
-    
-            var circle_marker_29c917951155bb58af2a45e82435b0f1 = L.circleMarker(
-                [14.5995, 120.9842],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_ec356202f80102bff5680d27c35a833e = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_730e218d72f72f4a523c5c390d0b70c8 = $(`<div id="html_730e218d72f72f4a523c5c390d0b70c8" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Philippines (Manila)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 52<br>                 <b>🌫️ Pollutants (PM2.5):</b> 5.9 µg/m³<br>                 <b>🌡️ Temp:</b> 25.8°C<br>                 <b>💧 Humidity:</b> 92%<br>                 <b>💨 Wind:</b> 14.5 km/h             </div>         </div>         </div>`)[0];
-                popup_ec356202f80102bff5680d27c35a833e.setContent(html_730e218d72f72f4a523c5c390d0b70c8);
-            
-        
-
-        circle_marker_29c917951155bb58af2a45e82435b0f1.bindPopup(popup_ec356202f80102bff5680d27c35a833e)
-        ;
-
-        
-    
-    
-            var circle_marker_caf3e2a9fce0e319b07c6f1b5726fb4a = L.circleMarker(
-                [4.711, -74.0721],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_e677ce7e6987f9ec5c951280a2a6c793 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_d3eaa235f68315d05fe9642069ecfa47 = $(`<div id="html_d3eaa235f68315d05fe9642069ecfa47" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Colombia (Bogota)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 61<br>                 <b>🌫️ Pollutants (PM2.5):</b> 4.2 µg/m³<br>                 <b>🌡️ Temp:</b> 18.1°C<br>                 <b>💧 Humidity:</b> 60%<br>                 <b>💨 Wind:</b> 10.7 km/h             </div>         </div>         </div>`)[0];
-                popup_e677ce7e6987f9ec5c951280a2a6c793.setContent(html_d3eaa235f68315d05fe9642069ecfa47);
-            
-        
-
-        circle_marker_caf3e2a9fce0e319b07c6f1b5726fb4a.bindPopup(popup_e677ce7e6987f9ec5c951280a2a6c793)
-        ;
-
-        
-    
-    
-            var circle_marker_ae91bdaa16ff4391a42187d8573b324e = L.circleMarker(
-                [-12.0464, -77.0428],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_7debf27c0c9d8ea4aab2f6ddf9dbfbb8 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_df9edb6dfa65543a479e66992ade8e48 = $(`<div id="html_df9edb6dfa65543a479e66992ade8e48" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Peru (Lima)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 53<br>                 <b>🌫️ Pollutants (PM2.5):</b> 14.7 µg/m³<br>                 <b>🌡️ Temp:</b> 22.3°C<br>                 <b>💧 Humidity:</b> 89%<br>                 <b>💨 Wind:</b> 10.5 km/h             </div>         </div>         </div>`)[0];
-                popup_7debf27c0c9d8ea4aab2f6ddf9dbfbb8.setContent(html_df9edb6dfa65543a479e66992ade8e48);
-            
-        
-
-        circle_marker_ae91bdaa16ff4391a42187d8573b324e.bindPopup(popup_7debf27c0c9d8ea4aab2f6ddf9dbfbb8)
-        ;
-
-        
-    
-    
-            var circle_marker_99e65f77765a93801b9532fc537b9832 = L.circleMarker(
-                [-33.4489, -70.6693],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_aa25322bfc607214af7d7711a2c49884 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_4e5435e1e2491f72a05675ebe2ea07da = $(`<div id="html_4e5435e1e2491f72a05675ebe2ea07da" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Chile (Santiago)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 78<br>                 <b>🌫️ Pollutants (PM2.5):</b> 31.3 µg/m³<br>                 <b>🌡️ Temp:</b> 29.0°C<br>                 <b>💧 Humidity:</b> 54%<br>                 <b>💨 Wind:</b> 24.3 km/h             </div>         </div>         </div>`)[0];
-                popup_aa25322bfc607214af7d7711a2c49884.setContent(html_4e5435e1e2491f72a05675ebe2ea07da);
-            
-        
-
-        circle_marker_99e65f77765a93801b9532fc537b9832.bindPopup(popup_aa25322bfc607214af7d7711a2c49884)
-        ;
-
-        
-    
-    
-            var circle_marker_e2878cfd54d91b86d3be2ffc3ec17233 = L.circleMarker(
-                [-41.2865, 174.7762],
-                {"bubblingMouseEvents": true, "color": "#00ff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00ff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_575e6aec09566774e6af8dc5a17fc346 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_df627f42fe358e46cd394d7e7476ec2a = $(`<div id="html_df627f42fe358e46cd394d7e7476ec2a" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #00ff00; padding-bottom:5px;">New Zealand (Wellington)</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 32<br>                 <b>🌫️ Pollutants (PM2.5):</b> 6.5 µg/m³<br>                 <b>🌡️ Temp:</b> 15.2°C<br>                 <b>💧 Humidity:</b> 73%<br>                 <b>💨 Wind:</b> 33.9 km/h             </div>         </div>         </div>`)[0];
-                popup_575e6aec09566774e6af8dc5a17fc346.setContent(html_df627f42fe358e46cd394d7e7476ec2a);
-            
-        
-
-        circle_marker_e2878cfd54d91b86d3be2ffc3ec17233.bindPopup(popup_575e6aec09566774e6af8dc5a17fc346)
-        ;
-
-        
-    
-    
-            var circle_marker_1d8f10f90a52caf29522763889b58b09 = L.circleMarker(
-                [1.3521, 103.8198],
-                {"bubblingMouseEvents": true, "color": "#ffff00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffff00", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1}
-            ).addTo(map_07ea025e2634e882b621b602eb1e20fc);
-        
-    
-        var popup_0bd3601d1e4f3f2727458480b9f22851 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_c8ab8f8f4cc3b6ef593b554c026c0343 = $(`<div id="html_c8ab8f8f4cc3b6ef593b554c026c0343" style="width: 100.0%; height: 100.0%;">         <div style="font-family:sans-serif; width:200px;">             <h4 style="margin:0; border-bottom:2px solid #ffff00; padding-bottom:5px;">Singapore</h4>             <span style="background-color:#0072BC; color:white; padding:2px 5px; font-size:10px; border-radius:3px;">GLOBAL MONITOR</span>                          <div style="margin-top:8px; font-size:12px;">                 <b>🏭 Air Quality (AQI):</b> 62<br>                 <b>🌫️ Pollutants (PM2.5):</b> 13.5 µg/m³<br>                 <b>🌡️ Temp:</b> 24.9°C<br>                 <b>💧 Humidity:</b> 89%<br>                 <b>💨 Wind:</b> 4.2 km/h             </div>         </div>         </div>`)[0];
-                popup_0bd3601d1e4f3f2727458480b9f22851.setContent(html_c8ab8f8f4cc3b6ef593b554c026c0343);
-            
-        
-
-        circle_marker_1d8f10f90a52caf29522763889b58b09.bindPopup(popup_0bd3601d1e4f3f2727458480b9f22851)
-        ;
-
-        
-    
 </script>
 </html>
