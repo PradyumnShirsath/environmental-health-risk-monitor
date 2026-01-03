@@ -29,6 +29,16 @@ This tool monitors the **Triple Burden of Risk**:
 
 ---
 
+## 💾 The Data Engine (Automated Pipeline)
+Unlike static maps, Project Sentinel includes a **Data Persistence Layer** to track environmental trends over time.
+
+* **Script:** `climate_data_pipeline.py`
+* **Function:** Acts as an automated ETL (Extract, Transform, Load) pipeline.
+* **Frequency:** Ingests satellite telemetry every 60 seconds (configurable).
+* **Output:** Generates `climate_history.csv`, a time-series dataset suitable for longitudinal regression analysis.
+
+---
+
 ## 🛠️ Methodology & Data Sources
 The system utilizes a **Bio-Geospatial Engine** to render health risks on a global scale.
 
@@ -44,7 +54,8 @@ The system utilizes a **Bio-Geospatial Engine** to render health risks on a glob
 ## 📂 Repository Structure
 | File Name | Description |
 | :--- | :--- |
-| `climate_map.py` | **The Bio-Engine.** Fetches live satellite data and maps it against health risk thresholds. |
+| `climate_map.py` | **The Visualization Engine.** Fetches live satellite data and maps it against health risk thresholds. |
+| `climate_data_pipeline.py` | **The Data Engineering Pipeline.** Automates data collection and storage for trend analysis. |
 | `global_climate_dashboard.html` | **The Health Monitor.** Interactive dashboard visualizing global health threats. |
 | `requirements.txt` | **Dependencies.** Python geospatial and request libraries. |
 
@@ -67,11 +78,16 @@ The system utilizes a **Bio-Geospatial Engine** to render health risks on a glob
     pip install -r requirements.txt
     ```
 
-3.  **Initialize Surveillance:**
+3.  **Run the Visualization:**
     ```bash
     python climate_map.py
     ```
-    *The system will connect to global satellite feeds and generate `global_climate_dashboard.html`.*
+
+4.  **Start the Data Collector:**
+    ```bash
+    python climate_data_pipeline.py
+    ```
+    *This will begin logging real-time data to `climate_history.csv`.*
 
 ---
 *Author: Pradyumn Shirsath | Developed for Public Health & Environmental Research*
