@@ -1,93 +1,157 @@
-# Project Sentinel: Environmental Health Risk Monitor
+# 🌍 Sentinel: Environmental Health Bio-Surveillance System
 
-![Status](https://img.shields.io/badge/Status-Live_Bio_Surveillance-success?style=flat-square)
-![Domain](https://img.shields.io/badge/Domain-Public_Health-red?style=flat-square)
-![Focus](https://img.shields.io/badge/Focus-Environmental_Determinants-green?style=flat-square)
+![Status](https://img.shields.io/badge/System-Operational-success?style=for-the-badge&logo=statuspage)
+![Language](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)
+![Pipeline](https://img.shields.io/badge/Data_Engineering-Automated_ETL-orange?style=for-the-badge)
+![Domain](https://img.shields.io/badge/Domain-Public_Health_%26_Climate_Security-red?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-## 🏥 Abstract: The Environmental Determinants of Health
-According to the WHO, environmental factors are responsible for 24% of the global burden of disease. **Project Sentinel** is a **Real-Time Health Surveillance System** designed to track these external threats.
-
-By integrating **Satellite Telemetry** (Air Quality/Heat) with **Geopolitical Data** (Displacement/Conflict), this dashboard provides a holistic view of the "Exposome"—the total environmental exposure affecting human health in real-time.
-
----
-
-## 🩺 Visual Intelligence: The Health Risk Matrix
-### The Dashboard Architecture
-This tool monitors the **Triple Burden of Risk**:
-
-* **🫁 Respiratory Health (AQI & PM2.5)**
-    * **Live Sensor Data:** Tracks PM2.5 levels (microscopic particulates) via Open-Meteo satellites.
-    * **Medical Impact:** Identifies zones with hazardous air quality linked to asthma, COPD, and cardiovascular failure.
-
-* **🌡️ Thermal Stress (Temp & Humidity)**
-    * **Wet Bulb Proxy:** Monitors the combination of Heat + High Humidity.
-    * **Medical Impact:** Predicts "Hyperthermia" risk (Heatstroke) and dehydration events in vulnerable populations.
-
-* **⚠️ Physical Safety (Conflict & Displacement)**
-    * **Crisis Zones:** Tracks refugee density in high-conflict regions (e.g., Sudan, Syria).
-    * **Social Determinant:** Proxies for sanitation collapse, malnutrition risk, and trauma.
+> **A Full-Stack Data Intelligence Platform** that aggregates real-time satellite telemetry to detect environmental health threats (Hyperthermia, AQI Toxicity) across 50+ global metropolitan hubs.
 
 ---
 
-## 💾 The Data Engine (Automated Pipeline)
-Unlike static maps, Project Sentinel includes a **Data Persistence Layer** to track environmental trends over time.
+## 📖 Executive Summary
+According to the WHO, environmental factors are responsible for **24% of the global burden of disease**. Standard weather tools fail to correlate raw metrics with human physiological limits.
 
-* **Script:** `climate_data_pipeline.py`
-* **Function:** Acts as an automated ETL (Extract, Transform, Load) pipeline.
-* **Frequency:** Ingests satellite telemetry every 60 seconds (configurable).
-* **Output:** Generates `climate_history.csv`, a time-series dataset suitable for longitudinal regression analysis.
+**Sentinel** is an automated **Bio-Surveillance Engine** designed to bridge this gap. It acts as a "Planetary Black Box," ingesting satellite data every 60 seconds to calculate medical risk metrics—specifically **Wet Bulb Temperature ($T_w$)** and **PM2.5 Toxicity**—to identify zones where the environment poses an immediate threat to human survival.
 
 ---
 
-## 🛠️ Methodology & Data Sources
-The system utilizes a **Bio-Geospatial Engine** to render health risks on a global scale.
+## 🏗️ System Architecture
 
-| Risk Factor | Data Source | Health Implication |
+The project utilizes a **Decoupled ETL (Extract, Transform, Load)** architecture to ensure scalability, fault tolerance, and data persistence.
+
+```mermaid
+graph TD
+    subgraph Ingestion Layer [📡 Data Collection]
+        A[Open-Meteo Satellite API] -->|JSON Stream| B(climate_data_pipeline.py)
+        D[world_cities.csv] -->|Dynamic Config| B
+    end
+    
+    subgraph Storage Layer [💾 Data Warehousing]
+        B -->|Append Time-Series| C[(climate_history.csv)]
+    end
+    
+    subgraph Intelligence Layer [🧠 Analytics & Viz]
+        C -->|Read History| E(trend_visualizer.py)
+        E -->|Matplotlib Engine| F[Analytics Report (PNG)]
+        D -->|Read Config| G(climate_map.py)
+        A -->|Real-time Feed| G
+        G -->|Folium Engine| H[Interactive Dashboard (HTML)]
+    end
+
+### **Block 4: Scientific Methodology**
+(This adds the math formulas and tables).
+
+```markdown
+## 🔬 Scientific Methodology
+
+Sentinel evaluates risk using epidemiological algorithms rather than raw weather data.
+
+### 1. The Hyperthermia Proxy: Wet Bulb Temperature ($T_w$)
+We utilize the **Stull (2011) Formula** to estimate $T_w$. This metric represents the lowest temperature a body can achieve via evaporative cooling (sweating).
+
+$$
+T_w = T \cdot \arctan[0.151977 \cdot (RH + 8.313659)^{1/2}] + \arctan(T + RH) - \arctan(RH - 1.676331) + \dots
+$$
+
+* **Clinical Threshold:** When $T_w > 32^\circ C$, the human body loses the ability to cool itself, leading to rapid heatstroke and organ failure.
+
+### 2. Respiratory Toxicity: Air Quality Index (AQI)
+The system categorizes respiratory risk based on US EPA standards for Particulate Matter (PM2.5).
+
+| AQI Value | Risk Level | Clinical Implication |
 | :--- | :--- | :--- |
-| **Particulate Matter (PM2.5)** | Open-Meteo Air Quality API | Lung Disease / Cancer Risk |
-| **Nitrogen Dioxide (NO2)** | Open-Meteo Air Quality API | Urban Smog / Respiratory Irritation |
-| **Relative Humidity** | Open-Meteo Weather API | Heat Stress Index (Body cooling failure) |
-| **Conflict Intensity** | UNHCR Displacement Data | Injury / Infectious Disease Outbreak |
+| **0 - 50** | 🟢 Good | No risk. |
+| **51 - 100** | 🟡 Moderate | Risk to extremely sensitive individuals. |
+| **101 - 150** | 🟠 Unhealthy (Sensitive) | Asthma/COPD exacerbation likely. |
+| **150+** | 🔴 Hazardous | General population risk; cardiovascular strain. |
 
 ---
 
-## 📂 Repository Structure
-| File Name | Description |
-| :--- | :--- |
-| `climate_map.py` | **The Visualization Engine.** Fetches live satellite data and maps it against health risk thresholds. |
-| `climate_data_pipeline.py` | **The Data Engineering Pipeline.** Automates data collection and storage for trend analysis. |
-| `global_climate_dashboard.html` | **The Health Monitor.** Interactive dashboard visualizing global health threats. |
-| `requirements.txt` | **Dependencies.** Python geospatial and request libraries. |
+## 🚀 Key Modules
+
+### ⚙️ 1. The Data Pipeline (`climate_data_pipeline.py`)
+* **Role:** Automated ETL Engine.
+* **Function:** Polls satellite APIs every 60 seconds for strategic locations defined in `world_cities.csv`.
+* **Engineering:** Implements rate-limiting to prevent API bans and auto-recovers from network failures.
+* **Output:** Generates a persistent time-series dataset (`climate_history.csv`).
+
+### 🗺️ 2. The Geospatial Engine (`climate_map.py`)
+* **Role:** Visualization Interface.
+* **Function:** Generates an interactive HTML heatmap (`global_climate_dashboard.html`).
+* **Logic:**
+    * **Safe Zones (Green):** Normal environmental parameters.
+    * **Crisis Zones (Red):** Areas where environmental stress compounds with humanitarian crises (e.g., Sudan, Syria).
+    * **Heatmap Layer:** Visualizes thermal intensity gradients globally.
+
+### 📈 3. The Analytic Engine (`trend_visualizer.py`)
+* **Role:** Business Intelligence (BI).
+* **Function:** Parses the historical CSV database to generate "Dark Mode" executive reports.
+* **Insight:** Compares Temperature vs. AQI trends over time to detect correlation patterns between urban heat islands and pollution.
 
 ---
 
-## 🚀 Usage Instructions
+## 📊 Visual Intelligence
+
+| **The Interactive Map** | **The Analytics Report** |
+| :---: | :---: |
+| *Real-time geospatial risk assessment* | *Longitudinal trend analysis* |
+| ![Map Preview](map_preview.png) | ![Graph Preview](climate_trends_report.png) |
+
+*(Note: Run the scripts locally to generate the latest visualizations)*
+
+---
+
+## 🛠️ Quick Start Guide
+
 ### Prerequisites
 * Python 3.8+
-* Internet connection (for Live Satellite Feeds)
+* `pip` package manager
 
-### Setup & Execution
-1.  **Clone the repository:**
+### Installation
+1.  **Clone the Repository**
     ```bash
     git clone [https://github.com/PradyumnShirsath/environmental-health-risk-monitor.git](https://github.com/PradyumnShirsath/environmental-health-risk-monitor.git)
     cd environmental-health-risk-monitor
     ```
 
-2.  **Install dependencies:**
+2.  **Install Dependencies**
     ```bash
     pip install -r requirements.txt
     ```
 
-3.  **Run the Visualization:**
-    ```bash
-    python climate_map.py
-    ```
-
-4.  **Start the Data Collector:**
+### Execution
+1.  **Start the Data Engine** (Let this run in the background to collect data)
     ```bash
     python climate_data_pipeline.py
     ```
-    *This will begin logging real-time data to `climate_history.csv`.*
+    > *Output: `climate_history.csv` will be created and populated.*
+
+2.  **Generate the Visuals**
+    ```bash
+    python climate_map.py       # Generates global_climate_dashboard.html
+    python trend_visualizer.py  # Generates climate_trends_report.png
+    ```
 
 ---
-*Author: Pradyumn Shirsath | Developed for Public Health & Environmental Research*
+
+## 📂 Repository Structure
+
+```text
+├── climate_data_pipeline.py  # ⚙️ ETL Script (The Collector)
+├── climate_map.py            # 🗺️ Map Generator (The Interface)
+├── trend_visualizer.py       # 📈 Data Analyst (The Report)
+├── world_cities.csv          # 🌍 Configuration File (Dynamic Inputs)
+├── climate_history.csv       # 💾 Database (Auto-generated)
+├── global_climate_dashboard.html # 🌐 Output: The Interactive Map
+├── requirements.txt          # 📦 Dependency List
+└── README.md                 # 📄 Documentation
+
+## 🔮 Future Roadmap
+* [ ] **Machine Learning:** Integrate LSTM neural networks to *forecast* AQI spikes 24h in advance.
+* [ ] **SMS Alerts:** Integration with Twilio API to send real-time health warnings to field agents.
+* [ ] **Cloud Deployment:** Containerize the pipeline using Docker for AWS/Azure deployment.
+
+---
+*Author: Pradyumn Shirsath | Developed for Research in Computational Sustainability & Public Health*

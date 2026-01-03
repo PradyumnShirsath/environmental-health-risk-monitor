@@ -1,6 +1,7 @@
-folium
-pandas
-branca
+fastapi
+uvicorn
 requests
+pandas
+folium
 matplotlib
 seaborn
