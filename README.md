@@ -1,12 +1,18 @@
 # 🌍 Sentinel: Environmental Health Bio-Surveillance System
 
+<div align="center">
+
 ![Status](https://img.shields.io/badge/System-Operational-success?style=for-the-badge&logo=statuspage)
 ![Language](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)
 ![Pipeline](https://img.shields.io/badge/Data_Engineering-Automated_ETL-orange?style=for-the-badge)
 ![Domain](https://img.shields.io/badge/Domain-Public_Health_%26_Climate_Security-red?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-> **A Full-Stack Data Intelligence Platform** that aggregates real-time satellite telemetry to detect environmental health threats (Hyperthermia, AQI Toxicity) across 50+ global metropolitan hubs.
+**A Full-Stack Data Intelligence Platform** that aggregates real-time satellite telemetry to detect environmental health threats (Hyperthermia, AQI Toxicity) across 50+ global metropolitan hubs.
+
+[View Demo](#-visual-intelligence) • [Installation](#-quick-start-guide) • [Architecture](#%EF%B8%8F-system-architecture)
+
+</div>
 
 ---
 
@@ -39,32 +45,29 @@ graph TD
         A -->|Real-time Feed| G
         G -->|Folium Engine| H[Interactive Dashboard (HTML)]
     end
+```
 
-### **Block 4: Scientific Methodology**
-(This adds the math formulas and tables).
-
-```markdown
-## 🔬 Scientific Methodology
+### 🔬 Scientific Methodology
 
 Sentinel evaluates risk using epidemiological algorithms rather than raw weather data.
 
-### 1. The Hyperthermia Proxy: Wet Bulb Temperature ($T_w$)
+#### 1. The Hyperthermia Proxy: Wet Bulb Temperature ($T_w$)
 We utilize the **Stull (2011) Formula** to estimate $T_w$. This metric represents the lowest temperature a body can achieve via evaporative cooling (sweating).
 
 $$
-T_w = T \cdot \arctan[0.151977 \cdot (RH + 8.313659)^{1/2}] + \arctan(T + RH) - \arctan(RH - 1.676331) + \dots
+T_w = T \cdot \arctan[0.151977 \cdot (RH + 8.313659)^{1/2}] + \dots
 $$
 
 * **Clinical Threshold:** When $T_w > 32^\circ C$, the human body loses the ability to cool itself, leading to rapid heatstroke and organ failure.
 
-### 2. Respiratory Toxicity: Air Quality Index (AQI)
+#### 2. Respiratory Toxicity: Air Quality Index (AQI)
 The system categorizes respiratory risk based on US EPA standards for Particulate Matter (PM2.5).
 
 | AQI Value | Risk Level | Clinical Implication |
 | :--- | :--- | :--- |
 | **0 - 50** | 🟢 Good | No risk. |
 | **51 - 100** | 🟡 Moderate | Risk to extremely sensitive individuals. |
-| **101 - 150** | 🟠 Unhealthy (Sensitive) | Asthma/COPD exacerbation likely. |
+| **101 - 150** | 🟠 Unhealthy | Asthma/COPD exacerbation likely. |
 | **150+** | 🔴 Hazardous | General population risk; cardiovascular strain. |
 
 ---
@@ -79,7 +82,7 @@ The system categorizes respiratory risk based on US EPA standards for Particulat
 
 ### 🗺️ 2. The Geospatial Engine (`climate_map.py`)
 * **Role:** Visualization Interface.
-* **Function:** Generates an interactive HTML heatmap (`global_climate_dashboard.html`).
+* **Function:** Generates an interactive HTML heatmap (`global_climate_dashboard.html`) utilizing `folium`.
 * **Logic:**
     * **Safe Zones (Green):** Normal environmental parameters.
     * **Crisis Zones (Red):** Areas where environmental stress compounds with humanitarian crises (e.g., Sudan, Syria).
@@ -87,7 +90,7 @@ The system categorizes respiratory risk based on US EPA standards for Particulat
 
 ### 📈 3. The Analytic Engine (`trend_visualizer.py`)
 * **Role:** Business Intelligence (BI).
-* **Function:** Parses the historical CSV database to generate "Dark Mode" executive reports.
+* **Function:** Parses the historical CSV database to generate "Dark Mode" executive reports using `pandas` and `seaborn`.
 * **Insight:** Compares Temperature vs. AQI trends over time to detect correlation patterns between urban heat islands and pollution.
 
 ---
@@ -112,7 +115,7 @@ The system categorizes respiratory risk based on US EPA standards for Particulat
 ### Installation
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/PradyumnShirsath/environmental-health-risk-monitor.git](https://github.com/PradyumnShirsath/environmental-health-risk-monitor.git)
+    git clone https://github.com/PradyumnShirsath/environmental-health-risk-monitor.git
     cd environmental-health-risk-monitor
     ```
 
@@ -128,7 +131,7 @@ The system categorizes respiratory risk based on US EPA standards for Particulat
     ```
     > *Output: `climate_history.csv` will be created and populated.*
 
-2.  **Generate the Visuals**
+2.  **Generate the Visuals** (Open a new terminal)
     ```bash
     python climate_map.py       # Generates global_climate_dashboard.html
     python trend_visualizer.py  # Generates climate_trends_report.png
@@ -136,19 +139,7 @@ The system categorizes respiratory risk based on US EPA standards for Particulat
 
 ---
 
-## 📂 Repository Structure
-
-```text
-├── climate_data_pipeline.py  # ⚙️ ETL Script (The Collector)
-├── climate_map.py            # 🗺️ Map Generator (The Interface)
-├── trend_visualizer.py       # 📈 Data Analyst (The Report)
-├── world_cities.csv          # 🌍 Configuration File (Dynamic Inputs)
-├── climate_history.csv       # 💾 Database (Auto-generated)
-├── global_climate_dashboard.html # 🌐 Output: The Interactive Map
-├── requirements.txt          # 📦 Dependency List
-└── README.md                 # 📄 Documentation
-
-## 🔮 Future Roadmap
+##  Future Roadmap
 * [ ] **Machine Learning:** Integrate LSTM neural networks to *forecast* AQI spikes 24h in advance.
 * [ ] **SMS Alerts:** Integration with Twilio API to send real-time health warnings to field agents.
 * [ ] **Cloud Deployment:** Containerize the pipeline using Docker for AWS/Azure deployment.
