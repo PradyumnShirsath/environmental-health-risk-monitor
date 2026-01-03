@@ -53,10 +53,10 @@ graph TD
     
     subgraph Intelligence Layer [🧠 Analytics & Viz]
         C -->|Read History| E(trend_visualizer.py)
-        E -->|Matplotlib Engine| F[Analytics Report (PNG)]
+        E -->|Matplotlib Engine| F["Analytics Report (PNG)"]
         D -->|Read Config| G(climate_map.py)
         A -->|Real-time Feed| G
-        G -->|Folium Engine| H[Interactive Dashboard (HTML)]
+        G -->|Folium Engine| H["Interactive Dashboard (HTML)"]
     end
 ```
 
